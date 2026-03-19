@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import jbLogo from "@/assets/jb-logo-white.png";
+import jbLogo from "@/assets/jb-agile-logo.svg";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -42,7 +42,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center">
-          <img src={jbLogo} alt="JB Agile Development" className="h-8" />
+          <img src={jbLogo} alt="JB Agile Development" className="h-14" />
         </Link>
 
         {/* Desktop nav */}
