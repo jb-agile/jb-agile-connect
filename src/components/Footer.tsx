@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import jbLogo from "@/assets/jb-logo-light.png";
+import jbLogo from "@/assets/jb-logo-white.png";
 
 const Footer = () => {
   return (

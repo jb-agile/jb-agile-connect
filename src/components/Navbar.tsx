@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import jbLogo from "@/assets/jb-logo-light.png";
+import jbLogo from "@/assets/jb-logo-white.png";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
