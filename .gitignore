@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Playwright screenshots
+.playwright-mcp/
+logo-before.png
+logo-after.png
