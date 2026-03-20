@@ -44,7 +44,7 @@
   <!-- Development -->
   <text x="142" y="61"
     font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
-    font-size="22" font-weight="300" letter-spacing="0.5"
+    font-size="26" font-weight="400" letter-spacing="0.5"
     class="wm-main">Development</text>
 
 </svg>
