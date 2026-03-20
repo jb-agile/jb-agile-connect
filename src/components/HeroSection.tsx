@@ -5,7 +5,7 @@ import ProcessDiagram from "./ProcessDiagram";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen bg-surface-dark overflow-hidden flex items-center">
+    <section className="relative min-h-screen bg-surface-dark overflow-hidden flex items-center pt-20">
       {/* Background effects */}
       <div className="absolute inset-0">
         <div
@@ -34,7 +34,7 @@ const HeroSection = () => {
               className="inline-flex items-center border border-white/20 bg-white/5 rounded-full px-4 py-1.5 mb-8"
             >
               <span className="font-body text-sm font-medium text-text-light/70">
-                Custom AI Solutions · Real Business Problems
+                Purpose-Built Software · AI-Native by Design
               </span>
             </motion.div>
 
@@ -44,11 +44,9 @@ const HeroSection = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="font-extrabold text-text-light">Your problem.</span>
+              <span className="font-extrabold text-text-light">Automate the repetitive.</span>
               <br />
-              <span className="font-extrabold text-text-light">Built to solve it.</span>
-              <br />
-              <span className="font-light text-text-light/60">Powered by AI.</span>
+              <span className="font-extrabold text-text-light">Connect the disconnected.</span>
             </motion.h1>
 
             <motion.p
@@ -58,9 +56,7 @@ const HeroSection = () => {
               className="font-body text-xl text-text-muted-dark max-w-[520px] mt-6 leading-relaxed"
               style={{ color: "#A1A1AA" }}
             >
-              We build custom AI-powered solutions to real business problems — going deep to
-              understand your specific challenge, then designing and delivering technology
-              built precisely for it.
+              Purpose-built software and workflow automation, designed around how your business actually operates — not the other way around.
             </motion.p>
 
             <motion.div
