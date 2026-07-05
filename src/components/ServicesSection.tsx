@@ -1,28 +1,27 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { GitBranch, Bot, Zap, Users } from "lucide-react";
 
 const services = [
   {
-    icon: GitBranch,
+    num: "01",
     title: "Business Problem Discovery & Analysis",
     body: "Every solution starts with understanding the real problem. We embed with your team to map how work actually flows, identify the root causes of friction, and pinpoint exactly where a custom solution will have the greatest impact — so we build the right thing from day one.",
     tag: "BPMN 2.0 · Value Stream Mapping · Process Mining",
   },
   {
-    icon: Bot,
+    num: "02",
     title: "Custom AI Solution Design & Development",
     body: "We design and build AI-powered solutions tailored precisely to your specific problem. No generic tools, no one-size-fits-all platforms — just purpose-built technology that fits your workflows, your data, and your people, rigorously tested against real business outcomes.",
     tag: "LangChain · AutoGen · n8n · OpenAI · Anthropic",
   },
   {
-    icon: Zap,
+    num: "03",
     title: "Integration & Automation",
     body: "We design and implement automated workflows that eliminate repetitive manual work, reduce errors, and free your people for higher-value tasks. Every automation is fully documented, measurable, and owned by your team — with security and GDPR compliance built in from day one.",
     tag: "UiPath · Power Automate · Zapier · Make · RPA",
   },
   {
-    icon: Users,
+    num: "04",
     title: "Deployment, Enablement & Ongoing Support",
     body: "A solution only works if your team can own it. We deploy, train, and hand over — ensuring your people are fully equipped to run, maintain, and evolve the solution independently. We stay available for ongoing support as your needs grow.",
     tag: "Enablement · Training · Change Management",
@@ -40,7 +39,7 @@ const ServicesSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
           <p className="font-body text-sm font-semibold uppercase tracking-widest text-accent mb-4">
             What We Do
@@ -50,23 +49,29 @@ const ServicesSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="divide-y divide-border-light border-t border-border-light">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="bg-card border border-border-light rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow duration-300"
+              className="grid lg:grid-cols-[100px_1fr_auto] gap-4 lg:gap-8 items-start py-10"
             >
-              <service.icon className="w-8 h-8 text-accent mb-5" />
-              <h3 className="font-heading text-xl font-bold text-text-dark mb-3">
-                {service.title}
-              </h3>
-              <p className="font-body text-base leading-relaxed text-muted-foreground mb-4">
-                {service.body}
+              <span className="font-heading text-4xl font-extrabold text-accent/40">
+                {service.num}
+              </span>
+              <div>
+                <h3 className="font-heading text-xl font-bold text-text-dark mb-3">
+                  {service.title}
+                </h3>
+                <p className="font-body text-base leading-relaxed text-muted-foreground max-w-2xl">
+                  {service.body}
+                </p>
+              </div>
+              <p className="font-body text-xs font-medium text-accent/70 lg:text-right lg:max-w-[180px] lg:pt-1">
+                {service.tag}
               </p>
-              <p className="font-body text-xs font-medium text-accent/70">{service.tag}</p>
             </motion.div>
           ))}
         </div>

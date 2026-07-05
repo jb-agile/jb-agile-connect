@@ -1,22 +1,21 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Target, Settings, Code } from "lucide-react";
 
 const personas = [
   {
-    icon: Target,
     title: "CEOs & Founders",
-    body: "You have a clear vision for where your organization needs to go but need a trusted partner to design and execute the path — without disrupting what's already working.",
+    quote:
+      "I have a clear vision for where the organization needs to go — I need a partner to help design and execute the path without disrupting what's already working.",
   },
   {
-    icon: Settings,
     title: "COOs & Heads of Operations",
-    body: "You know where processes break down, where your teams are spending time they shouldn't be, and where the organization is leaving value on the table. You come to us ready to fix it.",
+    quote:
+      "I know exactly where processes break down, where my teams are spending time they shouldn't be, and where we're leaving value on the table. I'm ready to fix it.",
   },
   {
-    icon: Code,
     title: "CTOs & Heads of Engineering",
-    body: "You're evaluating or already deploying AI and want to make sure it's embedded thoughtfully — not bolted on as an afterthought. You want AI that works with your teams, not around them.",
+    quote:
+      "I'm evaluating or already deploying AI and want it embedded thoughtfully — not bolted on as an afterthought. It has to work with my teams, not around them.",
   },
 ];
 
@@ -54,18 +53,21 @@ const WhoWeServeSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 mt-16">
+        <div className="grid md:grid-cols-3 gap-x-8 gap-y-10 mt-16">
           {personas.map((p, i) => (
             <motion.div
               key={p.title}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="bg-card border border-border-light rounded-2xl p-8 shadow-sm"
+              className="border-l-2 border-accent/30 pl-6"
             >
-              <p.icon className="w-8 h-8 text-accent mb-5" />
-              <h3 className="font-heading text-lg font-bold text-text-dark mb-3">{p.title}</h3>
-              <p className="font-body text-base leading-relaxed text-muted-foreground">{p.body}</p>
+              <p className="font-heading text-lg italic text-text-dark leading-snug mb-4">
+                "{p.quote}"
+              </p>
+              <p className="font-body text-xs font-semibold uppercase tracking-widest text-accent">
+                {p.title}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -75,7 +77,7 @@ const WhoWeServeSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 bg-secondary rounded-2xl p-10"
+          className="mt-20 bg-secondary rounded-2xl p-10"
         >
           <h3 className="font-heading text-2xl font-bold text-text-dark mb-6">
             Signs you might be ready
