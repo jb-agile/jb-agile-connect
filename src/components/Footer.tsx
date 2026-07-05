@@ -18,7 +18,7 @@ const Footer = () => {
               Navigation
             </p>
             <div className="space-y-2">
-              {["Home", "Services", "How We Work", "Who We Serve", "About", "Contact"].map((l) => (
+              {["Home", "Track Record", "Services", "How We Work", "Team", "Who We Serve", "About", "Contact"].map((l) => (
                 <Link
                   key={l}
                   to={l === "Home" ? "/" : l === "Contact" ? "/contact" : `/#${l.toLowerCase().replace(/ /g, "-")}`}
