@@ -76,7 +76,7 @@ const TrackRecordSection = () => {
             Track Record
           </p>
           <h2 className="font-heading text-4xl lg:text-5xl font-extrabold text-text-light mb-6">
-            Deep domain exposure, delivered the AI-native way
+            Deep domain exposure, AI-native delivery
           </h2>
           <p className="font-body text-lg max-w-[720px] mx-auto leading-relaxed" style={{ color: "#A1A1AA" }}>
             JB Agile's principal, Jawad Bokhari, has built and led platforms across banking,
