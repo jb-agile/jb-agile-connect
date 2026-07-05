@@ -4,27 +4,27 @@ import { useRef } from "react";
 const services = [
   {
     num: "01",
-    title: "Business Problem Discovery & Analysis",
-    body: "Every solution starts with understanding the real problem. We embed with your team to map how work actually flows, identify the root causes of friction, and pinpoint exactly where a custom solution will have the greatest impact — so we build the right thing from day one.",
-    tag: "BPMN 2.0 · Value Stream Mapping · Process Mining",
+    title: "Find the real problem",
+    body: "We map how work actually flows today and pinpoint exactly where friction, cost, and delay hide — so we build the right thing, not just any AI solution.",
+    tag: "Faster time-to-value · No guesswork",
   },
   {
     num: "02",
-    title: "Custom AI Solution Design & Development",
-    body: "We design and build AI-powered solutions tailored precisely to your specific problem. No generic tools, no one-size-fits-all platforms — just purpose-built technology that fits your workflows, your data, and your people, rigorously tested against real business outcomes.",
-    tag: "LangChain · AutoGen · n8n · OpenAI · Anthropic",
+    title: "Build the AI solution",
+    body: "We design and build an AI system engineered for your specific problem, your data, and your people — not a generic chatbot or platform bolted onto old workflows.",
+    tag: "Purpose-built · Not off-the-shelf",
   },
   {
     num: "03",
-    title: "Integration & Automation",
-    body: "We design and implement automated workflows that eliminate repetitive manual work, reduce errors, and free your people for higher-value tasks. Every automation is fully documented, measurable, and owned by your team — with security and GDPR compliance built in from day one.",
-    tag: "UiPath · Power Automate · Zapier · Make · RPA",
+    title: "Automate the workflow",
+    body: "We connect the AI solution directly into your systems so work moves end-to-end without manual handoffs, re-keying, or errors — with security and GDPR compliance built in.",
+    tag: "AI-native automation · End-to-end",
   },
   {
     num: "04",
-    title: "Deployment, Enablement & Ongoing Support",
-    body: "A solution only works if your team can own it. We deploy, train, and hand over — ensuring your people are fully equipped to run, maintain, and evolve the solution independently. We stay available for ongoing support as your needs grow.",
-    tag: "Enablement · Training · Change Management",
+    title: "Hand it over, keep it running",
+    body: "We deploy, train your team, and hand over full ownership — then stay on call as your needs evolve, so the solution keeps paying off long after launch.",
+    tag: "Full ownership · Ongoing support",
   },
 ];
 
@@ -42,10 +42,10 @@ const ServicesSection = () => {
           className="mb-16"
         >
           <p className="font-body text-sm font-semibold uppercase tracking-widest text-accent mb-4">
-            What We Do
+            How We Work
           </p>
           <h2 className="font-heading text-4xl lg:text-5xl font-extrabold text-text-dark">
-            Four ways we solve your problem
+            From problem to production, in four steps
           </h2>
         </motion.div>
 
