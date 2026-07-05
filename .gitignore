@@ -27,3 +27,6 @@ dist-ssr
 .playwright-mcp/
 logo-before.png
 logo-after.png
+
+# Claude Code worktrees
+.claude/worktrees/
