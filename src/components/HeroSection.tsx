@@ -1,24 +1,17 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
-import ProcessDiagram from "./ProcessDiagram";
+import HeroProofCard from "./HeroProofCard";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen bg-surface-dark overflow-hidden flex items-center pt-20">
-      {/* Background effects */}
+      {/* Background effect */}
       <div className="absolute inset-0">
         <div
-          className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full"
+          className="absolute top-0 right-0 w-[500px] h-[500px]"
           style={{
-            background: "radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
+            background: "radial-gradient(circle, rgba(99,102,241,0.10) 0%, transparent 70%)",
           }}
         />
       </div>
@@ -31,9 +24,10 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center border border-white/20 bg-white/5 rounded-full px-4 py-1.5 mb-8"
+              className="flex items-center gap-3 mb-8"
             >
-              <span className="font-body text-sm font-medium text-text-light/70">
+              <span className="w-8 h-px bg-accent" />
+              <span className="font-body text-sm font-medium uppercase tracking-widest text-text-light/60">
                 Purpose-Built Software · AI-Native by Design
               </span>
             </motion.div>
@@ -86,7 +80,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
-            <ProcessDiagram />
+            <HeroProofCard />
           </motion.div>
         </div>
 
