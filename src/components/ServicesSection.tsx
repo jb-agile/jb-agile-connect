@@ -33,7 +33,7 @@ const ServicesSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="bg-surface-light py-24 lg:py-32">
+    <section id="services" className="scroll-mt-24 bg-surface-light py-24 lg:py-32">
       <div className="container mx-auto px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -64,7 +64,7 @@ const TrackRecordSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="track-record" className="bg-surface-dark py-24 lg:py-32">
+    <section id="track-record" className="scroll-mt-24 bg-surface-dark py-24 lg:py-32">
       <div className="container mx-auto px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
