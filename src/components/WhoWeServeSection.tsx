@@ -19,14 +19,6 @@ const personas = [
   },
 ];
 
-const signs = [
-  "You have a specific business problem that off-the-shelf tools can't solve properly",
-  "Your team is spending too much time on manual work that a custom solution could eliminate",
-  "You've tried generic AI tools but they don't fit your workflows or data",
-  "You need a solution built around your specific context — not a platform you have to adapt to",
-  "You want technology that your team can own, maintain, and evolve over time",
-];
-
 const WhoWeServeSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
@@ -71,26 +63,6 @@ const WhoWeServeSection = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Signs you're ready */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-20 bg-secondary rounded-2xl p-10"
-        >
-          <h3 className="font-heading text-2xl font-bold text-text-dark mb-6">
-            Signs you might be ready
-          </h3>
-          <div className="space-y-4">
-            {signs.map((sign, i) => (
-              <div key={i} className="flex gap-3 items-start">
-                <span className="text-accent mt-1.5 text-sm">—</span>
-                <p className="font-body text-base text-muted-foreground leading-relaxed">{sign}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
