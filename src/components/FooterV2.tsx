@@ -12,7 +12,7 @@ const FooterV2 = () => {
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div>
-            <img src={jbLogo} alt="JB Agile Development" className="h-7 w-auto mb-3" />
+            <img src={jbLogo} alt="JB Agile" className="h-7 w-auto mb-3" />
             <p className="font-body text-sm leading-relaxed" style={{ color: "#A1A1AA" }}>
               Your problem. Built to solve it. Powered by AI.
             </p>
@@ -74,7 +74,7 @@ const FooterV2 = () => {
 
         <div className="border-t border-white/10 pt-6">
           <p className="font-body text-xs text-center" style={{ color: "#52525B" }}>
-            © 2025 JB Agile Development. All rights reserved. · Design system v2 preview
+            © 2025 JB Agile. All rights reserved. · Design system v2 preview
           </p>
         </div>
       </div>

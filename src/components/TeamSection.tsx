@@ -43,7 +43,7 @@ const TeamSection = () => {
             <h3 className="font-heading text-2xl font-bold text-text-dark mb-4">Jawad Bokhari</h3>
             <p className="font-body text-base leading-relaxed text-muted-foreground">
               25 years of enterprise platform delivery across telecoms, banking, healthcare, and
-              government. Founder of JB Agile Development and Head of Engineering at Expertflow,
+              government. Founder of JB Agile and Head of Engineering at Expertflow,
               where he led ground-up development of an AI-powered customer collaboration platform
               now live at national-scale deployments across four continents.
             </p>
