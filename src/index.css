@@ -6,7 +6,11 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
+    /*
+     * Design system — warm espresso/amber palette, July 2026.
+     * Derived from branding/design-system.
+     */
+    --background: 32 39% 94%;
     --foreground: 240 6% 10%;
 
     --card: 0 0% 100%;
@@ -15,7 +19,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 6% 10%;
 
-    --primary: 239 84% 67%;
+    --primary: 23 67% 55%;          /* Amber #D97A3D */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 240 5% 96%;
@@ -24,27 +28,28 @@
     --muted: 240 5% 96%;
     --muted-foreground: 240 4% 46%;
 
-    --accent: 239 84% 67%;
+    --accent: 23 67% 55%;           /* Amber #D97A3D */
     --accent-foreground: 0 0% 100%;
-    --accent-hover: 239 76% 59%;
+    --accent-hover: 24 69% 39%;     /* Burnt Orange #A8551F */
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 240 6% 90%;
     --input: 240 6% 90%;
-    --ring: 239 84% 67%;
+    --ring: 23 67% 55%;
 
     --radius: 1rem;
 
     /* Custom tokens */
-    --bg-dark: 240 6% 4%;
-    --bg-light: 0 0% 98%;
+    --bg-dark: 20 32% 13%;          /* Espresso #2B1D16 */
+    --bg-void: 30 44% 6%;           /* Deep Coffee #171009 */
+    --bg-light: 32 39% 94%;         /* Ivory #F5EFE8 */
     --text-light: 240 5% 96%;
     --text-dark: 240 6% 10%;
     --text-muted-dark: 240 4% 46%;
-    --border-dark: 240 4% 16%;
-    --border-light: 240 6% 90%;
+    --border-dark: 30 15% 42%;      /* warm border, replaces navy-tinted #27272A */
+    --border-light: 35 39% 85%;     /* warm border → #E8DCCB */
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -84,27 +89,6 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  /*
-   * New design system — scoped preview only.
-   * Derived from branding/design-system (warm espresso/amber palette,
-   * July 2026 — supersedes the earlier violet/navy preview below).
-   * Wrap a page/section in class="theme-v2" to opt in without
-   * touching the live site's default tokens above.
-   */
-  .theme-v2 {
-    --primary: 23 67% 55%;          /* Signal Violet (warm) → Amber #D97A3D */
-    --accent: 23 67% 55%;           /* Amber #D97A3D */
-    --accent-hover: 24 69% 39%;     /* Deep Violet (warm) → Burnt Orange #A8551F */
-    --ring: 23 67% 55%;
-
-    --bg-dark: 20 32% 13%;          /* Ink Navy (warm) → Espresso #2B1D16 */
-    --bg-void: 30 44% 6%;           /* Void Black (warm) → Deep Coffee #171009 */
-    --bg-light: 32 39% 94%;         /* Cloud Gray (warm) → Ivory #F5EFE8 */
-    --background: 32 39% 94%;
-    --border-dark: 30 15% 42%;      /* warm border, replaces navy-tinted #27272A */
-    --border-light: 35 39% 85%;     /* warm border → #E8DCCB, replaces neutral #E4E4E7 */
   }
 }
 
