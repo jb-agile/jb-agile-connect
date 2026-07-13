@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import jbLogo from "@/assets/brand/jb-agile-logo-v2-transparent-white.png";
+import jbLogo from "@/assets/brand/jb-agile-lockup-on-ink-navy-warm.png";
 
 /**
- * Design-system-v2 preview only. Same structure as Footer.tsx,
- * updated to the finalized selected-logo lockup (no white pill needed —
- * the transparent white-text version sits directly on Ink Navy).
+ * Design-system-v2 preview only. Same structure as Footer.tsx, updated
+ * to the pinwheel mark lockup and the warm Espresso palette (#2B1D16)
+ * from branding/design-system.
  */
 const FooterV2 = () => {
   return (
@@ -13,7 +13,7 @@ const FooterV2 = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div>
             <img src={jbLogo} alt="JB Agile" className="h-7 w-auto mb-3" />
-            <p className="font-body text-sm leading-relaxed" style={{ color: "#A1A1AA" }}>
+            <p className="font-body text-sm leading-relaxed" style={{ color: "#A99C8C" }}>
               Your problem. Built to solve it. Powered by AI.
             </p>
           </div>
@@ -28,7 +28,7 @@ const FooterV2 = () => {
                   key={l}
                   to={l === "Home" ? "/preview-v2" : l === "Contact" ? "/contact" : `/preview-v2#${l.toLowerCase().replace(/ /g, "-")}`}
                   className="block font-body text-sm hover:text-accent transition-colors"
-                  style={{ color: "#A1A1AA" }}
+                  style={{ color: "#A99C8C" }}
                 >
                   {l}
                 </Link>
@@ -42,7 +42,7 @@ const FooterV2 = () => {
             </p>
             <div className="space-y-2">
               {["Problem Discovery & Analysis", "Custom AI Solution Development", "Integration & Automation", "Deployment & Enablement"].map((s) => (
-                <p key={s} className="font-body text-sm" style={{ color: "#A1A1AA" }}>
+                <p key={s} className="font-body text-sm" style={{ color: "#A99C8C" }}>
                   {s}
                 </p>
               ))}
@@ -57,14 +57,14 @@ const FooterV2 = () => {
               <a
                 href="mailto:jawad@jb-agiledev.com"
                 className="block font-body text-sm hover:text-accent transition-colors"
-                style={{ color: "#A1A1AA" }}
+                style={{ color: "#A99C8C" }}
               >
                 jawad@jb-agiledev.com
               </a>
               <a
                 href="#"
                 className="block font-body text-sm hover:text-accent transition-colors"
-                style={{ color: "#A1A1AA" }}
+                style={{ color: "#A99C8C" }}
               >
                 LinkedIn →
               </a>
@@ -73,7 +73,7 @@ const FooterV2 = () => {
         </div>
 
         <div className="border-t border-white/10 pt-6">
-          <p className="font-body text-xs text-center" style={{ color: "#52525B" }}>
+          <p className="font-body text-xs text-center" style={{ color: "#96876F" }}>
             © 2025 JB Agile. All rights reserved. · Design system v2 preview
           </p>
         </div>

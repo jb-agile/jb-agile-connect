@@ -88,20 +88,23 @@
 
   /*
    * New design system — scoped preview only.
-   * Derived from the selected logo (branding/selected-logo/).
+   * Derived from branding/design-system (warm espresso/amber palette,
+   * July 2026 — supersedes the earlier violet/navy preview below).
    * Wrap a page/section in class="theme-v2" to opt in without
    * touching the live site's default tokens above.
    */
   .theme-v2 {
-    --primary: 253 98% 58%;         /* Signal Violet #5A2BFD */
-    --accent: 253 98% 58%;          /* Signal Violet #5A2BFD */
-    --accent-hover: 253 71% 47%;    /* Deep Violet hover #4923CF */
-    --ring: 253 98% 58%;
+    --primary: 23 67% 55%;          /* Signal Violet (warm) → Amber #D97A3D */
+    --accent: 23 67% 55%;           /* Amber #D97A3D */
+    --accent-hover: 24 69% 39%;     /* Deep Violet (warm) → Burnt Orange #A8551F */
+    --ring: 23 67% 55%;
 
-    --bg-dark: 219 100% 9%;         /* Ink Navy #00102D */
-    --bg-light: 220 14% 96%;        /* Cloud Gray #F3F4F6 */
-    --background: 220 14% 96%;
-    --border-dark: 220 37% 16%;     /* navy-tinted border, replaces neutral #27272A */
+    --bg-dark: 20 32% 13%;          /* Ink Navy (warm) → Espresso #2B1D16 */
+    --bg-void: 30 44% 6%;           /* Void Black (warm) → Deep Coffee #171009 */
+    --bg-light: 32 39% 94%;         /* Cloud Gray (warm) → Ivory #F5EFE8 */
+    --background: 32 39% 94%;
+    --border-dark: 30 15% 42%;      /* warm border, replaces navy-tinted #27272A */
+    --border-light: 35 39% 85%;     /* warm border → #E8DCCB, replaces neutral #E4E4E7 */
   }
 }
 

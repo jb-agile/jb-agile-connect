@@ -12,10 +12,10 @@ import CTASectionV2 from "@/components/CTASectionV2";
 import FooterV2 from "@/components/FooterV2";
 
 /**
- * Design system v2 preview — Home page re-themed with the new palette
- * derived from the selected logo (Signal Violet #5A2BFD / Ink Navy #00102D)
- * and the finalized logo lockup. Scoped via the "theme-v2" class in
- * index.css so it doesn't affect the live site's default tokens.
+ * Design system v2 preview — Home page re-themed with the warm palette
+ * from branding/design-system (Amber #D97A3D / Espresso #2B1D16) and the
+ * pinwheel logo lockup. Scoped via the "theme-v2" class in index.css so
+ * it doesn't affect the live site's default tokens.
  *
  * Only the pieces that hardcoded the old indigo/near-black literals were
  * duplicated (Navbar, Footer, Hero, HeroProofCard, CTA) — every other
