@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import jbLogo from "@/assets/jb-agile-logo.svg";
+import jbLogo from "@/assets/brand/jb-agile-logo-v2-transparent-white.png";
 
 const Footer = () => {
   return (
@@ -7,7 +7,9 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div>
-            <img src={jbLogo} alt="JB Agile Development" className="h-10 mb-3" />
+            <div className="inline-flex mb-3">
+              <img src={jbLogo} alt="JB Agile Development" className="h-7 w-auto" />
+            </div>
             <p className="font-body text-sm leading-relaxed" style={{ color: "#A1A1AA" }}>
               Your problem. Built to solve it. Powered by AI.
             </p>
