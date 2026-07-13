@@ -21,7 +21,7 @@ const AboutStrip = () => {
               "Not off-the-shelf. Built for you." 
             </p>
             <p className="font-body text-lg leading-relaxed" style={{ color: "#A1A1AA" }}>
-              JB Agile Development builds custom AI-powered solutions to real business problems.
+              JB Agile builds custom AI-powered solutions to real business problems.
               We embed with customers to understand exactly how their business works, then design
               and deliver technology tailored precisely to their context — their workflows, their
               data, their people, and their goals.

@@ -51,7 +51,7 @@ const Contact = () => {
                 <div className="flex items-center gap-3">
                   <Linkedin className="w-5 h-5 text-accent" />
                   <a href="#" className="font-body text-sm" style={{ color: "#52525B" }}>
-                    JB Agile Development
+                    JB Agile
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
