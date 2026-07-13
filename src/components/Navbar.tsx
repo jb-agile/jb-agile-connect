@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import jbLogo from "@/assets/brand/jb-agile-logo-v2-transparent-white.png";
+import jbLogo from "@/assets/brand/jb-agile-lockup-transparent-warm.png";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -38,7 +38,7 @@ const Navbar = () => {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#09090B]/80 backdrop-blur-md border-b border-white/10"
+          ? "bg-[#2B1D16]/85 backdrop-blur-md border-b border-white/10"
           : "bg-transparent"
       }`}
     >
@@ -88,7 +88,7 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-[#09090B]/95 backdrop-blur-md border-t border-white/10 px-6 pb-6"
+          className="md:hidden bg-[#2B1D16]/95 backdrop-blur-md border-t border-white/10 px-6 pb-6"
         >
           {navLinks.map((link) => (
             <Link

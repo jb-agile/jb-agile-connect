@@ -1,97 +1,74 @@
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import HeroProofCard from "./HeroProofCard";
+import brandMark from "@/assets/brand/jb-agile-icon-transparent-warm.png";
+
+const stats = [
+  { value: "25", label: "Years" },
+  { value: "5", label: "Sectors" },
+  { value: "7", label: "Countries" },
+];
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen bg-surface-dark overflow-hidden flex items-center pt-20">
-      {/* Background effect */}
-      <div className="absolute inset-0">
-        <div
-          className="absolute top-0 right-0 w-[500px] h-[500px]"
-          style={{
-            background: "radial-gradient(circle, rgba(99,102,241,0.10) 0%, transparent 70%)",
-          }}
-        />
-      </div>
+      {/* Background: the actual brand mark, not a generic glow */}
+      <img
+        src={brandMark}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute -right-24 top-1/2 -translate-y-1/2 w-[620px] h-auto opacity-[0.07] rotate-[8deg]"
+      />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-[55%_45%] gap-12 items-center">
-          {/* Left column */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex items-center gap-3 mb-8"
-            >
-              <span className="w-8 h-px bg-accent" />
-              <span className="font-body text-sm font-medium uppercase tracking-widest text-text-light/60">
-                Purpose-Built Software · AI-Native by Design
-              </span>
-            </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="max-w-[640px]"
+        >
+          <p className="font-mono text-sm text-accent mb-6">
+            <span className="text-text-light/30">// </span>
+            Purpose-built software, AI-native by design
+          </p>
 
-            <motion.h1
-              className="font-heading text-5xl sm:text-6xl lg:text-7xl leading-[1.08] mb-6"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <span className="font-extrabold text-text-light">Automate the repetitive.</span>
-              <br />
-              <span className="font-extrabold text-text-light">Connect the disconnected.</span>
-            </motion.h1>
+          <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl leading-[1.08] mb-6 font-extrabold text-text-light">
+            Automate the repetitive.
+            <br />
+            Connect the disconnected.
+          </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="font-body text-xl text-text-muted-dark max-w-[520px] mt-6 leading-relaxed"
-              style={{ color: "#A1A1AA" }}
-            >
-              Purpose-built software and workflow automation, designed around how your business actually operates — not the other way around.
-            </motion.p>
+          <p className="font-body text-xl max-w-[520px] mt-6 leading-relaxed" style={{ color: "#A99C8C" }}>
+            Purpose-built software and workflow automation, designed around how your business actually operates — not the other way around.
+          </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="flex flex-wrap gap-4 mt-10"
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-4 mt-10">
+            <Link
+              to="/contact"
+              className="group bg-accent hover:bg-accent-hover text-white font-body font-semibold px-6 py-3.5 rounded-lg transition-colors inline-flex items-center gap-2"
             >
-              <Link
-                to="/contact"
-                className="bg-accent hover:bg-accent-hover text-primary-foreground font-body font-medium px-8 py-4 rounded-full transition-colors"
-              >
-                Book a Discovery Call
-              </Link>
-              <a
-                href="#services"
-                className="border border-white/30 hover:border-white/60 text-text-light font-body font-medium px-8 py-4 rounded-full transition-colors"
-              >
-                Explore Our Services
-              </a>
-            </motion.div>
+              Book a Discovery Call
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <a
+              href="#services"
+              className="font-body font-medium text-text-light/70 hover:text-text-light underline underline-offset-4 decoration-white/30 hover:decoration-white transition-colors"
+            >
+              Explore our services
+            </a>
           </div>
 
-          {/* Right column */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-          >
-            <HeroProofCard />
-          </motion.div>
-        </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <ChevronDown className="w-6 h-6 text-text-light/40 animate-bounce-slow" />
+          <div className="flex items-center gap-8 mt-14 pt-8 border-t border-white/10">
+            {stats.map((s, i) => (
+              <div key={s.label} className="flex items-center gap-8">
+                <div>
+                  <p className="font-heading text-3xl font-extrabold text-text-light">{s.value}</p>
+                  <p className="font-body text-xs mt-0.5" style={{ color: "#96876F" }}>{s.label}</p>
+                </div>
+                {i < stats.length - 1 && <span className="w-px h-8 bg-white/10" />}
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
