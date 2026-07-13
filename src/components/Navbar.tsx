@@ -44,7 +44,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center">
-          <img src={jbLogo} alt="JB Agile" className="h-8 w-auto" />
+          <img src={jbLogo} alt="JB Agile" className="h-12 w-auto" />
         </Link>
 
         {/* Desktop nav */}
