@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import jbLogo from "@/assets/brand/jb-agile-lockup-on-ink-navy-warm.png";
+import jbLogo from "@/assets/brand/jb-agile-lockup-transparent-warm.png";
 
 /**
  * Design-system-v2 preview only. Same structure as Navbar.tsx, updated
  * to the pinwheel mark lockup and the warm Espresso palette (#2B1D16)
- * from branding/design-system.
+ * from branding/design-system. Logo is a transparent-background crop
+ * (chroma-keyed from the design system's solid-fill lockup) so it sits
+ * cleanly on both the transparent and blurred/translucent navbar states.
  */
 const NavbarV2 = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -49,7 +51,7 @@ const NavbarV2 = () => {
     >
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         <Link to="/preview-v2" className="flex items-center">
-          <img src={jbLogo} alt="JB Agile" className="h-8 w-auto" />
+          <img src={jbLogo} alt="JB Agile" className="h-12 w-auto" />
         </Link>
 
         {/* Desktop nav */}
