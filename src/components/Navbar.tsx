@@ -31,13 +31,18 @@ const Navbar = () => {
     }
   };
 
+  // Only the homepage has a dark hero behind the navbar at scroll position 0 —
+  // every other page has a light background, so the navbar needs its solid
+  // dark backdrop from the start there, not just after scrolling.
+  const solidBg = scrolled || location.pathname !== "/";
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+        solidBg
           ? "bg-[#2B1D16]/85 backdrop-blur-md border-b border-white/10"
           : "bg-transparent"
       }`}
