@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div>
             <div className="inline-flex mb-3">
-              <img src={jbLogo} alt="JB Agile Development" className="h-7 w-auto" />
+              <img src={jbLogo} alt="JB Agile Development" className="h-10 w-auto" />
             </div>
             <p className="font-body text-sm leading-relaxed" style={{ color: "#A1A1AA" }}>
               Your problem. Built to solve it. Powered by AI.
