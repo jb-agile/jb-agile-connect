@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
-import jbLogo from "@/assets/brand/jb-agile-lockup-on-ink-navy-warm.png";
+import jbLogo from "@/assets/brand/jb-agile-lockup-transparent-warm.png";
 
 /**
  * Design-system-v2 preview only. Same structure as Footer.tsx, updated
  * to the pinwheel mark lockup and the warm Espresso palette (#2B1D16)
- * from branding/design-system.
+ * from branding/design-system. Logo is a transparent-background crop
+ * (chroma-keyed from the design system's solid-fill lockup) so it sits
+ * cleanly on the footer's dark field.
  */
 const FooterV2 = () => {
   return (
@@ -12,7 +14,7 @@ const FooterV2 = () => {
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div>
-            <img src={jbLogo} alt="JB Agile" className="h-7 w-auto mb-3" />
+            <img src={jbLogo} alt="JB Agile" className="h-10 w-auto mb-3" />
             <p className="font-body text-sm leading-relaxed" style={{ color: "#A99C8C" }}>
               Your problem. Built to solve it. Powered by AI.
             </p>
