@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import brandMark from "@/assets/brand/jb-agile-mark-transparent.png";
+import brandMark from "@/assets/brand/jb-agile-icon-transparent-warm.png";
 
 const stats = [
   { value: "25", label: "Years" },
@@ -51,7 +51,7 @@ const HeroSectionV2 = () => {
             Connect the disconnected.
           </h1>
 
-          <p className="font-body text-xl max-w-[520px] mt-6 leading-relaxed" style={{ color: "#A1A1AA" }}>
+          <p className="font-body text-xl max-w-[520px] mt-6 leading-relaxed" style={{ color: "#A99C8C" }}>
             Purpose-built software and workflow automation, designed around how your business actually operates — not the other way around.
           </p>
 
@@ -76,7 +76,7 @@ const HeroSectionV2 = () => {
               <div key={s.label} className="flex items-center gap-8">
                 <div>
                   <p className="font-heading text-3xl font-extrabold text-text-light">{s.value}</p>
-                  <p className="font-body text-xs mt-0.5" style={{ color: "#71717A" }}>{s.label}</p>
+                  <p className="font-body text-xs mt-0.5" style={{ color: "#96876F" }}>{s.label}</p>
                 </div>
                 {i < stats.length - 1 && <span className="w-px h-8 bg-white/10" />}
               </div>

@@ -23,7 +23,7 @@ const CTASectionV2 = () => {
           <h2 className="font-heading text-4xl lg:text-5xl font-extrabold text-text-light mb-6">
             Have a problem worth solving properly?
           </h2>
-          <p className="font-body text-lg max-w-2xl mx-auto mb-10" style={{ color: "#A1A1AA" }}>
+          <p className="font-body text-lg max-w-2xl mx-auto mb-10" style={{ color: "#A99C8C" }}>
             Start with a conversation. No pitch, no pressure — just an honest look at your
             problem and whether we're the right people to help you solve it.
           </p>
