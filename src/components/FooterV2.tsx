@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
 import jbLogo from "@/assets/brand/jb-agile-logo-v2-transparent-white.png";
 
-const Footer = () => {
+/**
+ * Design-system-v2 preview only. Same structure as Footer.tsx,
+ * updated to the finalized selected-logo lockup (no white pill needed —
+ * the transparent white-text version sits directly on Ink Navy).
+ */
+const FooterV2 = () => {
   return (
     <footer className="bg-surface-dark border-t border-white/10 pt-16 pb-8">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div>
-            <div className="inline-flex mb-3">
-              <img src={jbLogo} alt="JB Agile Development" className="h-7 w-auto" />
-            </div>
+            <img src={jbLogo} alt="JB Agile Development" className="h-7 w-auto mb-3" />
             <p className="font-body text-sm leading-relaxed" style={{ color: "#A1A1AA" }}>
               Your problem. Built to solve it. Powered by AI.
             </p>
@@ -23,7 +26,7 @@ const Footer = () => {
               {["Home", "Track Record", "Services", "How We Work", "Team", "Who We Serve", "About", "Contact"].map((l) => (
                 <Link
                   key={l}
-                  to={l === "Home" ? "/" : l === "Contact" ? "/contact" : `/#${l.toLowerCase().replace(/ /g, "-")}`}
+                  to={l === "Home" ? "/preview-v2" : l === "Contact" ? "/contact" : `/preview-v2#${l.toLowerCase().replace(/ /g, "-")}`}
                   className="block font-body text-sm hover:text-accent transition-colors"
                   style={{ color: "#A1A1AA" }}
                 >
@@ -71,7 +74,7 @@ const Footer = () => {
 
         <div className="border-t border-white/10 pt-6">
           <p className="font-body text-xs text-center" style={{ color: "#52525B" }}>
-            © 2025 JB Agile Development. All rights reserved.
+            © 2025 JB Agile Development. All rights reserved. · Design system v2 preview
           </p>
         </div>
       </div>
@@ -79,4 +82,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default FooterV2;

@@ -3,7 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import jbLogo from "@/assets/brand/jb-agile-logo-v2-transparent-white.png";
 
-const Navbar = () => {
+/**
+ * Design-system-v2 preview only. Same structure as Navbar.tsx,
+ * updated to the finalized selected-logo lockup and Ink Navy (#00102D)
+ * instead of the old near-black (#09090B).
+ */
+const NavbarV2 = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
@@ -25,8 +30,8 @@ const Navbar = () => {
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
-    if (href.startsWith("/#") && location.pathname === "/") {
-      const el = document.querySelector(href.replace("/", ""));
+    if (href.startsWith("/#") && location.pathname === "/preview-v2") {
+      const el = document.querySelector(href.replace("/preview-v2", ""));
       el?.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -36,14 +41,14 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-9 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#09090B]/80 backdrop-blur-md border-b border-white/10"
+          ? "bg-[#00102D]/85 backdrop-blur-md border-b border-white/10"
           : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
-        <Link to="/" className="flex items-center">
+        <Link to="/preview-v2" className="flex items-center">
           <img src={jbLogo} alt="JB Agile" className="h-8 w-auto" />
         </Link>
 
@@ -88,7 +93,7 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-[#09090B]/95 backdrop-blur-md border-t border-white/10 px-6 pb-6"
+          className="md:hidden bg-[#00102D]/95 backdrop-blur-md border-t border-white/10 px-6 pb-6"
         >
           {navLinks.map((link) => (
             <Link
@@ -113,4 +118,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarV2;

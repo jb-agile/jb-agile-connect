@@ -85,6 +85,24 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  /*
+   * New design system — scoped preview only.
+   * Derived from the selected logo (branding/selected-logo/).
+   * Wrap a page/section in class="theme-v2" to opt in without
+   * touching the live site's default tokens above.
+   */
+  .theme-v2 {
+    --primary: 253 98% 58%;         /* Signal Violet #5A2BFD */
+    --accent: 253 98% 58%;          /* Signal Violet #5A2BFD */
+    --accent-hover: 253 71% 47%;    /* Deep Violet hover #4923CF */
+    --ring: 253 98% 58%;
+
+    --bg-dark: 219 100% 9%;         /* Ink Navy #00102D */
+    --bg-light: 220 14% 96%;        /* Cloud Gray #F3F4F6 */
+    --background: 220 14% 96%;
+    --border-dark: 220 37% 16%;     /* navy-tinted border, replaces neutral #27272A */
+  }
 }
 
 @layer base {
