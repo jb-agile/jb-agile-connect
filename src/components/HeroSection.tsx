@@ -7,7 +7,7 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen bg-surface-dark overflow-hidden flex items-center pt-20">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1.4fr)] gap-10 items-center">
+        <div className="grid lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1.7fr)] gap-6 items-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -24,7 +24,7 @@ const HeroSection = () => {
               <br />
               to intelligent orchestration —
               <br />
-              powered by AI.
+              <span className="text-accent">powered by AI.</span>
             </h1>
 
             <p className="font-body text-xl max-w-[560px] mt-6 leading-relaxed" style={{ color: "#A99C8C" }}>
@@ -57,7 +57,7 @@ const HeroSection = () => {
             <img
               src={coherenceWheel}
               alt="Diagram of the JB Agile coherence engineering framework: domain, structure, flow, and automation arranged around a central hub"
-              className="w-full max-w-[1020px] h-auto"
+              className="w-full max-w-[1200px] h-auto"
               style={{
                 WebkitMaskImage: "radial-gradient(ellipse closest-side at 50% 50%, black 45%, transparent 100%)",
                 maskImage: "radial-gradient(ellipse closest-side at 50% 50%, black 45%, transparent 100%)",
