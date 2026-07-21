@@ -4,27 +4,17 @@ import { useRef } from "react";
 const services = [
   {
     num: "01",
-    title: "Business Problem Discovery & Analysis",
-    body: "Every solution starts with understanding the real problem. We embed with your team to map how work actually flows, identify the root causes of friction, and pinpoint exactly where a custom solution will have the greatest impact — so we build the right thing from day one.",
-    tag: "BPMN 2.0 · Value Stream Mapping · Process Mining",
+    title: "System Integration",
+    body: "Unifying disparate platforms, applications, and data sources into a coherent operational foundation — closing the gap of manual handoffs, duplicated data entry, delayed information, and process breakdowns that fragmentation causes.",
+    tag: "Fastest path in · Primary buyer: COOs & Heads of Operations",
+    roi: "Cuts the manual handoffs and duplicate entry that fragmentation causes — and opens the door to self-service, reducing the volume that needs a human agent.",
   },
   {
     num: "02",
-    title: "Custom AI Solution Design & Development",
-    body: "We design and build AI-powered solutions tailored precisely to your specific problem. No generic tools, no one-size-fits-all platforms — just purpose-built technology that fits your workflows, your data, and your people, rigorously tested against real business outcomes.",
-    tag: "LangChain · AutoGen · n8n · OpenAI · Anthropic",
-  },
-  {
-    num: "03",
-    title: "Integration & Automation",
-    body: "We design and implement automated workflows that eliminate repetitive manual work, reduce errors, and free your people for higher-value tasks. Every automation is fully documented, measurable, and owned by your team — with security and GDPR compliance built in from day one.",
-    tag: "UiPath · Power Automate · Zapier · Make · RPA",
-  },
-  {
-    num: "04",
-    title: "Deployment, Enablement & Ongoing Support",
-    body: "A solution only works if your team can own it. We deploy, train, and hand over — ensuring your people are fully equipped to run, maintain, and evolve the solution independently. We stay available for ongoing support as your needs grow.",
-    tag: "Enablement · Training · Change Management",
+    title: "Journey Orchestration",
+    body: "For integrated systems, we design and implement the workflows, real-time tracking, and alerts that give operations continuous visibility of the complete picture — and give the people involved timely, accurate information at every step.",
+    tag: "Where the differentiated IP lives · A reusable orchestration approach, refined across engagements",
+    roi: "A single unified view removes the context-switching that slows resolution — the same pattern that improved first-call resolution in past engagements.",
   },
 ];
 
@@ -42,11 +32,17 @@ const ServicesSection = () => {
           className="mb-16"
         >
           <p className="font-body text-sm font-semibold uppercase tracking-widest text-accent mb-4">
-            What We Do
+            Our Approach
           </p>
-          <h2 className="font-heading text-4xl lg:text-5xl font-extrabold text-text-dark">
-            Four ways we solve your problem
+          <h2 className="font-heading text-4xl lg:text-5xl font-extrabold text-text-dark mb-6">
+            Two stages. One team.
           </h2>
+          <p className="font-body text-lg max-w-2xl leading-relaxed text-muted-foreground">
+            We begin by integrating your fragmented, disconnected systems. From there, we build
+            the orchestration layer — the workflows, dashboards, and alerts — that give your
+            organization the complete, end-to-end picture and control over every process those
+            systems support.
+          </p>
         </motion.div>
 
         <div className="divide-y divide-border-light border-t border-border-light">
@@ -56,7 +52,7 @@ const ServicesSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="grid lg:grid-cols-[100px_1fr_auto] gap-4 lg:gap-8 items-start py-10"
+              className="grid lg:grid-cols-[100px_1fr_260px] gap-4 lg:gap-8 items-start py-10"
             >
               <span className="font-heading text-4xl font-extrabold text-accent/40">
                 {service.num}
@@ -69,9 +65,14 @@ const ServicesSection = () => {
                   {service.body}
                 </p>
               </div>
-              <p className="font-body text-xs font-medium text-accent/70 lg:text-right lg:max-w-[180px] lg:pt-1">
-                {service.tag}
-              </p>
+              <div className="lg:text-right lg:pt-1">
+                <p className="font-body text-xs font-medium text-accent/70 mb-3">
+                  {service.tag}
+                </p>
+                <p className="font-body text-xs leading-relaxed text-muted-foreground">
+                  {service.roi}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>

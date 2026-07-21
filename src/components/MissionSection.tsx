@@ -24,8 +24,9 @@ const MissionSection = () => {
                 Mission
               </p>
               <p className="font-body text-lg leading-relaxed" style={{ color: "#A1A1AA" }}>
-                To solve real business problems through purpose-built AI solutions — deeply
-                understanding what each customer needs and building custom technology that delivers it.
+                To turn fragmented, disconnected systems into the visibility and control
+                operations teams need — integrating what's broken, then building the orchestration
+                layer that keeps it running.
               </p>
             </div>
             <div>
@@ -33,9 +34,9 @@ const MissionSection = () => {
                 Vision
               </p>
               <p className="font-body text-lg leading-relaxed" style={{ color: "#A1A1AA" }}>
-                To be the trusted partner organizations turn to when off-the-shelf tools aren't
-                enough — delivering AI-powered solutions designed precisely around each customer's
-                unique challenges.
+                To be the partner organizations call when their systems don't talk to each other —
+                bringing a reusable orchestration approach, refined across 15+ years of
+                engagements, to every new domain we enter.
               </p>
             </div>
           </div>

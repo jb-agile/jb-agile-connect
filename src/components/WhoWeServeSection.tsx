@@ -3,19 +3,19 @@ import { useRef } from "react";
 
 const personas = [
   {
-    title: "CEOs & Founders",
-    quote:
-      "I have a clear vision for where the organization needs to go — I need a partner to help design and execute the path without disrupting what's already working.",
-  },
-  {
     title: "COOs & Heads of Operations",
     quote:
       "I know exactly where processes break down, where my teams are spending time they shouldn't be, and where we're leaving value on the table. I'm ready to fix it.",
   },
   {
+    title: "CEOs & Founders",
+    quote:
+      "I have a clear vision for where the organization needs to go — I need a partner to help design and execute the path without disrupting what's already working.",
+  },
+  {
     title: "CTOs & Heads of Engineering",
     quote:
-      "I'm evaluating or already deploying AI and want it embedded thoughtfully — not bolted on as an afterthought. It has to work with my teams, not around them.",
+      "My systems all work fine in isolation. What I don't have is one place that shows me the whole process end-to-end — or tells me when something's about to break.",
   },
 ];
 
@@ -36,12 +36,13 @@ const WhoWeServeSection = () => {
             Who We Work With
           </p>
           <h2 className="font-heading text-4xl lg:text-5xl font-extrabold text-text-dark mb-6">
-            Built for organizations with a problem worth solving properly
+            Built for the people who feel the fragmentation first
           </h2>
           <p className="font-body text-lg max-w-[700px] mx-auto leading-relaxed" style={{ color: "#52525B" }}>
-            We work with organizations that have a specific problem off-the-shelf tools won't
-            solve. Our methodology is industry-agnostic — but we have deep experience with
-            technology companies, SaaS platforms, and digital-first organizations.
+            We work with organizations whose systems don't talk to each other — and where that
+            gap is costing time, money, or visibility. Our methodology is domain-agnostic; the
+            pain is the same whether it shows up in a contact center, a hospital, or a customs
+            office.
           </p>
         </motion.div>
 

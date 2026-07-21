@@ -16,11 +16,12 @@ const CTASection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-heading text-4xl lg:text-5xl font-extrabold text-text-light mb-6">
-            Have a problem worth solving properly?
+            Where are your systems fighting each other?
           </h2>
           <p className="font-body text-lg max-w-2xl mx-auto mb-10" style={{ color: "#A99C8C" }}>
-            Start with a conversation. No pitch, no pressure — just an honest look at your
-            problem and whether we're the right people to help you solve it.
+            Start with a conversation about where the fragmentation actually costs you — manual
+            handoffs, duplicate data entry, the report nobody trusts. No pitch, no pressure. Just
+            an honest read on whether integration, orchestration, or both is the right first move.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4">
             <Link

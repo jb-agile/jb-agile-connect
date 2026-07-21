@@ -10,12 +10,12 @@ const steps = [
   {
     num: "02",
     title: "Process Discovery & Diagnosis",
-    body: "We embed with your team — running workshops, stakeholder interviews, and hands-on process observation — to build a clear map of how work actually flows, where friction lives, and where AI agents could meaningfully join your workforce.",
+    body: "We embed with your team — running workshops, stakeholder interviews, and hands-on process observation — to build a clear map of how work actually flows, where the friction lives, and where integration or orchestration will have the most impact.",
   },
   {
     num: "03",
     title: "Solution Design",
-    body: "With a shared understanding of the landscape, we design the path forward together with your team — defining what to build, where AI fits, what tools to use, and how the solution integrates into your existing workflows and roles.",
+    body: "With a shared understanding of the landscape, we design the path forward together with your team — defining what to integrate first, what the orchestration layer needs to show, and how the solution fits your existing workflows and roles.",
   },
   {
     num: "04",

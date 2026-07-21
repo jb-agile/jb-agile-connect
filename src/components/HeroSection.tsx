@@ -3,12 +3,6 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import brandMark from "@/assets/brand/jb-agile-icon-transparent-warm.png";
 
-const stats = [
-  { value: "25", label: "Years" },
-  { value: "5", label: "Sectors" },
-  { value: "7", label: "Countries" },
-];
-
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen bg-surface-dark overflow-hidden flex items-center pt-20">
@@ -29,17 +23,17 @@ const HeroSection = () => {
         >
           <p className="font-mono text-sm text-accent mb-6">
             <span className="text-text-light/30">// </span>
-            Purpose-built software, AI-native by design
+            Systems integration & orchestration
           </p>
 
           <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl leading-[1.08] mb-6 font-extrabold text-text-light">
-            Automate the repetitive.
+            It's not an integration problem.
             <br />
-            Connect the disconnected.
+            It's an orchestration problem.
           </h1>
 
           <p className="font-body text-xl max-w-[520px] mt-6 leading-relaxed" style={{ color: "#A99C8C" }}>
-            Purpose-built software and workflow automation, designed around how your business actually operates — not the other way around.
+            Integration gets your systems talking to each other. We go further — building the workflows, dashboards, and alerts that give you real-time visibility and control over the process those systems support.
           </p>
 
           <div className="flex flex-wrap items-center gap-x-8 gap-y-4 mt-10">
@@ -56,18 +50,6 @@ const HeroSection = () => {
             >
               Explore our services
             </a>
-          </div>
-
-          <div className="flex items-center gap-8 mt-14 pt-8 border-t border-white/10">
-            {stats.map((s, i) => (
-              <div key={s.label} className="flex items-center gap-8">
-                <div>
-                  <p className="font-heading text-3xl font-extrabold text-text-light">{s.value}</p>
-                  <p className="font-body text-xs mt-0.5" style={{ color: "#96876F" }}>{s.label}</p>
-                </div>
-                {i < stats.length - 1 && <span className="w-px h-8 bg-white/10" />}
-              </div>
-            ))}
           </div>
         </motion.div>
       </div>

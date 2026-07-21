@@ -4,7 +4,6 @@ import { Activity, Landmark, Radio, Building2, HeartPulse, Zap } from "lucide-re
 
 const stats = [
   { value: "25", label: "Years enterprise delivery" },
-  { value: "5", label: "Sectors" },
   { value: "7", label: "Countries" },
   { value: "4", label: "Continents" },
 ];
@@ -50,13 +49,6 @@ const activeEngagements = [
     body: "Building a cross-agency cargo monitoring and reconciliation platform that integrates data feeds from multiple trade and logistics agencies into a single real-time oversight dashboard — with automated exception detection, SLA breach alerts, and audit-grade reporting for supervisors.",
     status: "Active engagement, Phase 1 in progress — the start of a long-term, multi-project partnership.",
   },
-  {
-    label: "Currently Advising",
-    name: "Enterprise Engineering Transformation",
-    tag: "Enterprise Software / Customer Engagement Platforms",
-    body: "Advising a senior engineering organization through a shift to AI-native, agentic engineering workflows — spec-driven development, AI-assisted delivery, and automated documentation — targeting a step-change in engineering throughput. In parallel, architecting a headless platform model that lets the company's own customers extend and own their UI and workflows.",
-    status: "Ongoing advisory engagement, in progress.",
-  },
 ];
 
 const TrackRecordSection = () => {
@@ -76,14 +68,14 @@ const TrackRecordSection = () => {
             Track Record
           </p>
           <h2 className="font-heading text-4xl lg:text-5xl font-extrabold text-text-light mb-6">
-            Deep domain exposure, AI-native delivery
+            Fifteen years of showing up, delivering, and getting asked back
           </h2>
           <p className="font-body text-lg max-w-[720px] mx-auto leading-relaxed" style={{ color: "#A1A1AA" }}>
-            JB Agile's principal, Jawad Bokhari, has built and led platforms across banking,
-            telecoms, government, healthcare, and utilities — at national scale, across four
-            continents. That real-world exposure is what we bring to every engagement, combined
-            with AI-native workflows: agentic development, automated documentation, and a pace of
-            delivery that simply wasn't possible a few years ago.
+            JB Agile's principal, Jawad Bokhari, spent over 15 years building and scaling a
+            customer-engagement platform — from solo engineer to an 80+ engineer organization now
+            live across telecom, banking, government, and crisis-line clients in 7+ countries.
+            That track record of reliable delivery is why clients keep coming back, in whatever
+            order the next project comes.
           </p>
         </motion.div>
 
@@ -91,7 +83,7 @@ const TrackRecordSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 max-w-[800px] mx-auto"
+          className="grid grid-cols-3 gap-4 mb-16 max-w-[600px] mx-auto"
         >
           {stats.map((s) => (
             <div key={s.label} className="text-center rounded-2xl border border-white/10 bg-white/5 py-6 px-3">
