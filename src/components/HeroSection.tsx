@@ -7,11 +7,12 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen bg-surface-dark overflow-hidden flex items-center pt-20">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.7fr)] gap-10 items-center">
+        <div className="grid lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1.4fr)] gap-10 items-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
+            className="relative z-20 lg:-mr-16 xl:-mr-24"
           >
             <p className="font-mono text-sm text-accent mb-6">
               <span className="text-text-light/30">// </span>
@@ -19,12 +20,14 @@ const HeroSection = () => {
             </p>
 
             <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl leading-[1.08] mb-6 font-extrabold text-text-light">
-              It's not an integration problem.
+              From connected systems
               <br />
-              It's an orchestration problem.
+              to intelligent orchestration —
+              <br />
+              powered by AI.
             </h1>
 
-            <p className="font-body text-xl max-w-[520px] mt-6 leading-relaxed" style={{ color: "#A99C8C" }}>
+            <p className="font-body text-xl max-w-[560px] mt-6 leading-relaxed" style={{ color: "#A99C8C" }}>
               Integration gets your systems talking to each other. We go further — building the workflows, dashboards, and alerts that give you real-time visibility and control over the process those systems support.
             </p>
 
