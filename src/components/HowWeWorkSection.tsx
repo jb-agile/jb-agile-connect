@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import WorkflowDiagram from "./WorkflowDiagram";
 
 const steps = [
   {
@@ -55,26 +56,34 @@ const HowWeWorkSection = () => {
           </h2>
         </motion.div>
 
-        <div className="space-y-12 lg:space-y-16">
-          {steps.map((step, i) => (
-            <motion.div
-              key={step.num}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="grid lg:grid-cols-[100px_1fr] gap-6 items-start"
-            >
-              <span className="font-heading text-5xl font-extrabold text-accent">{step.num}</span>
-              <div>
-                <h3 className="font-heading text-2xl font-bold text-text-light mb-3">
-                  {step.title}
-                </h3>
-                <p className="font-body text-lg leading-relaxed max-w-2xl" style={{ color: "#A1A1AA" }}>
-                  {step.body}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+        <div className="grid lg:grid-cols-[1fr_320px] gap-12">
+          <div className="space-y-12 lg:space-y-16">
+            {steps.map((step, i) => (
+              <motion.div
+                key={step.num}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: i * 0.15 }}
+                className="grid lg:grid-cols-[100px_1fr] gap-6 items-start"
+              >
+                <span className="font-heading text-5xl font-extrabold text-accent">{step.num}</span>
+                <div>
+                  <h3 className="font-heading text-2xl font-bold text-text-light mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="font-body text-lg leading-relaxed max-w-2xl" style={{ color: "#A1A1AA" }}>
+                    {step.body}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="hidden lg:block relative">
+            <div className="sticky top-32 flex justify-center">
+              <WorkflowDiagram inView={inView} />
+            </div>
+          </div>
         </div>
       </div>
     </section>
