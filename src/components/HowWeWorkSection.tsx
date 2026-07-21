@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { PhoneCall, Search, PenTool, Hammer, Handshake, Repeat2 } from "lucide-react";
 import WorkflowDiagram from "./WorkflowDiagram";
 
 const steps = [
@@ -7,31 +8,37 @@ const steps = [
     num: "01",
     title: "Discovery Call",
     body: "Everything starts with a conversation — no agenda, no pitch. We listen to understand your organization, the challenges you're facing, and what success genuinely looks like for your team.",
+    icon: PhoneCall,
   },
   {
     num: "02",
     title: "Process Discovery & Diagnosis",
     body: "We embed with your team — running workshops, stakeholder interviews, and hands-on process observation — to build a clear map of how work actually flows, where the friction lives, and where integration or orchestration will have the most impact.",
+    icon: Search,
   },
   {
     num: "03",
     title: "Solution Design",
     body: "With a shared understanding of the landscape, we design the path forward together with your team — defining what to integrate first, what the orchestration layer needs to show, and how the solution fits your existing workflows and roles.",
+    icon: PenTool,
   },
   {
     num: "04",
     title: "Build & Delivery",
     body: "We work inside your organization — not as external advisors dropping in with slide decks, but as embedded partners alongside your teams. We build, implement, iterate, and course-correct in real time, continuously transferring knowledge and ownership.",
+    icon: Hammer,
   },
   {
     num: "05",
     title: "Enablement & Handover",
     body: "Before we step back, your team is fully equipped to own and evolve the solution independently — managing workflows, maintaining AI components, and continuing to improve without relying on us.",
+    icon: Handshake,
   },
   {
     num: "06",
     title: "Ongoing Partnership",
     body: "Transformation doesn't end at handover. Many clients maintain an ongoing relationship — bringing us back for new process domains, emerging AI capabilities, or periodic reviews as their organization evolves.",
+    icon: Repeat2,
   },
 ];
 
@@ -81,7 +88,7 @@ const HowWeWorkSection = () => {
 
           <div className="hidden lg:block relative">
             <div className="sticky top-32 flex justify-center">
-              <WorkflowDiagram inView={inView} />
+              <WorkflowDiagram inView={inView} steps={steps} />
             </div>
           </div>
         </div>
