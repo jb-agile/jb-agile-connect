@@ -11,7 +11,7 @@ const Footer = () => {
               <img src={jbLogo} alt="JB Agile" className="h-10 w-auto" />
             </div>
             <p className="font-body text-sm leading-relaxed" style={{ color: "#A99C8C" }}>
-              Your problem. Built to solve it. Powered by AI.
+              We integrate what's disconnected. We orchestrate what matters.
             </p>
           </div>
 
@@ -38,7 +38,7 @@ const Footer = () => {
               Services
             </p>
             <div className="space-y-2">
-              {["Problem Discovery & Analysis", "Custom AI Solution Development", "Integration & Automation", "Deployment & Enablement"].map((s) => (
+              {["System Integration", "Journey Orchestration"].map((s) => (
                 <p key={s} className="font-body text-sm" style={{ color: "#A99C8C" }}>
                   {s}
                 </p>

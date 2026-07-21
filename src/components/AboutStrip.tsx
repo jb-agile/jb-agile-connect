@@ -18,13 +18,13 @@ const AboutStrip = () => {
             className="grid lg:grid-cols-2 gap-12 items-start">
             
             <p className="font-heading text-3xl lg:text-4xl italic text-accent font-bold leading-snug">
-              "Not off-the-shelf. Built for you." 
+              "Most vendors hand you a system. We stay until you're running on it."
             </p>
             <p className="font-body text-lg leading-relaxed" style={{ color: "#A1A1AA" }}>
-              JB Agile builds custom AI-powered solutions to real business problems.
-              We embed with customers to understand exactly how their business works, then design
-              and deliver technology tailored precisely to their context — their workflows, their
-              data, their people, and their goals.
+              Most integration vendors hand you a working system and move on. Most process
+              consultants hand you a roadmap and leave the building to someone else. We do both —
+              one team designs the integration, builds it, and stays through rollout to make sure
+              your organization actually runs on it.
             </p>
           </motion.div>
         </div>
