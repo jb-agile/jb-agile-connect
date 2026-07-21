@@ -6,12 +6,16 @@ import coherenceWheel from "@/assets/hero/coherence-engineering-wheel.webp";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen bg-surface-dark overflow-hidden flex items-center pt-20">
-      {/* Background: coherence-engineering diagram, subtle full-bleed */}
+      {/* Background: coherence-engineering diagram, full-bleed with a left fade so it has no hard edge */}
       <img
         src={coherenceWheel}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none select-none absolute right-0 top-1/2 -translate-y-1/2 w-[900px] max-w-none h-auto opacity-[0.15]"
+        className="pointer-events-none select-none absolute inset-0 w-full h-full object-cover object-[75%_50%] opacity-[0.15]"
+        style={{
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 42%)",
+          maskImage: "linear-gradient(to right, transparent 0%, black 42%)",
+        }}
       />
 
       <div className="container mx-auto px-6 relative z-10">
