@@ -71,7 +71,7 @@ const Footer = () => {
 
         <div className="border-t border-white/10 pt-6">
           <p className="font-body text-xs text-center" style={{ color: "#96876F" }}>
-            © 2025 JB Agile. All rights reserved.
+            © {new Date().getFullYear()} JB Agile. All rights reserved.
           </p>
         </div>
       </div>
