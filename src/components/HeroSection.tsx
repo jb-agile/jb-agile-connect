@@ -1,17 +1,17 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import brandMark from "@/assets/brand/jb-agile-icon-transparent-warm.png";
+import coherenceWheel from "@/assets/hero/coherence-engineering-wheel.webp";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen bg-surface-dark overflow-hidden flex items-center pt-20">
-      {/* Background: the actual brand mark, not a generic glow */}
+      {/* Background: coherence-engineering diagram, subtle full-bleed */}
       <img
-        src={brandMark}
+        src={coherenceWheel}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none select-none absolute -right-24 top-1/2 -translate-y-1/2 w-[620px] h-auto opacity-[0.07] rotate-[8deg]"
+        className="pointer-events-none select-none absolute right-0 top-1/2 -translate-y-1/2 w-[900px] max-w-none h-auto opacity-[0.15]"
       />
 
       <div className="container mx-auto px-6 relative z-10">
