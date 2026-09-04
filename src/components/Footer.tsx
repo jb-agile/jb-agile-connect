@@ -69,10 +69,20 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-6">
+        <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-center gap-3">
           <p className="font-body text-xs text-center" style={{ color: "#96876F" }}>
             © {new Date().getFullYear()} JB Agile. All rights reserved.
           </p>
+          <span className="hidden md:inline font-body text-xs" style={{ color: "#96876F" }}>
+            ·
+          </span>
+          <Link
+            to="/privacy-policy"
+            className="font-body text-xs hover:text-accent transition-colors"
+            style={{ color: "#96876F" }}
+          >
+            Privacy Policy
+          </Link>
         </div>
       </div>
     </footer>
