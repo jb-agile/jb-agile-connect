@@ -663,7 +663,7 @@ const OperationalAssurance = () => {
           <Prose>
             <p className={bodyText}>
               Our team has delivered mission-critical platforms and complex integration across
-              telecom, banking, government, healthcare and utilities. In each, the same failure
+              defense, banking, government, healthcare and utilities. In each, the same failure
               recurred: a record held correctly by the system that created it, and unmonitored the
               moment it crossed a boundary. JB Agile exists to close that gap.
             </p>
