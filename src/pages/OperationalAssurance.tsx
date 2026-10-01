@@ -1,17 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  Activity,
-  ArrowDown,
-  ArrowRight,
-  GitCompare,
-  Map as MapIcon,
-  Search,
-  ShieldCheck,
-  UserCheck,
-  type LucideIcon,
-} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import {
@@ -88,34 +77,28 @@ const systems = [
   "Email, files, spreadsheets",
 ];
 
-const flow: { group: string; nodes: { name: string; desc: string; Icon: LucideIcon }[] }[] = [
+const phases = [
   {
-    group: "See",
-    nodes: [
-      { name: "Map", desc: "Flow, systems, handoffs and controls", Icon: MapIcon },
-      { name: "Track", desc: "Every case across systems, in one event history", Icon: Activity },
+    kicker: "See the whole journey",
+    verbs: [
+      ["Map", "The flow, systems, handoffs and controls"],
+      ["Track", "Every case across systems, in one history"],
     ],
   },
   {
-    group: "Check",
-    nodes: [
-      { name: "Reconcile", desc: "Records against source data and business rules", Icon: GitCompare },
-      { name: "Detect", desc: "Missing, conflicting, late or out-of-sequence events", Icon: Search },
+    kicker: "Check it against the rules",
+    verbs: [
+      ["Reconcile", "Records against source data and your rules"],
+      ["Detect", "Missing, conflicting or late events, early"],
     ],
   },
   {
-    group: "Act",
-    nodes: [
-      { name: "Route", desc: "Each exception to an accountable owner, with an SLA clock", Icon: UserCheck },
-      { name: "Prove", desc: "Traceable history and audit evidence on demand", Icon: ShieldCheck },
+    kicker: "Act and keep the evidence",
+    verbs: [
+      ["Route", "Each exception to an owner, with an SLA clock"],
+      ["Prove", "Traceable history and audit evidence on demand"],
     ],
   },
-];
-
-const controlModel = [
-  ["Deterministic", "Integration, workflow state, permissions, business rules and evidence."],
-  ["AI-assisted", "Reading unstructured documents, matching records with no shared key, flagging anomalies, compiling evidence."],
-  ["Human-approved", "Every consequential action, with a full audit trail."],
 ];
 
 const steps = [
@@ -185,7 +168,7 @@ const faqs: { q: string; a: ReactNode }[] = [
         do not agree, exceptions have no owner, and evidence has to be reconstructed by hand. AI is
         how we close that gap at each step of the method above, under explicit human authority with
         a full audit trail, not a technology badge layered on top. See{" "}
-        <a href="#method" className="text-[#F0B287] hover:underline">
+        <a href="#method" className="text-[color:var(--acci)] hover:underline">
           How we do it
         </a>{" "}
         for the specifics.
@@ -198,7 +181,7 @@ const faqs: { q: string; a: ReactNode }[] = [
       <>
         Dashboards show you data. They do not assign ownership or resolve exceptions. If nobody is
         accountable for what the dashboard shows, problems still fall through. See the{" "}
-        <a href="#alternatives" className="text-[#F0B287] hover:underline">
+        <a href="#alternatives" className="text-[color:var(--acci)] hover:underline">
           comparison above
         </a>{" "}
         for the fuller answer.
@@ -243,7 +226,7 @@ const faqs: { q: string; a: ReactNode }[] = [
       <>
         An identified process owner and technology owner, access to relevant stakeholders, and
         either live or sanitized sample data. See{" "}
-        <a href="#notfor" className="text-[#F0B287] hover:underline">
+        <a href="#notfor" className="text-[color:var(--acci)] hover:underline">
           who this isn't for
         </a>
         .
@@ -257,15 +240,41 @@ const faqs: { q: string; a: ReactNode }[] = [
 ];
 
 
+type Tone = "dark" | "light" | "white";
+
+const tones: Record<Tone, React.CSSProperties> = {
+  dark: {
+    "--ink": "#F5EFE8", "--ink2": "#C3B3A4", "--ink3": "#9A8879", "--rule": "#3A2A20", "--rule2": "#4E3A2C",
+    "--acc": "#E8996A", "--acci": "#F0B287", "--acc-soft": "#33210F", "--surf": "#221811", "--surf2": "#2B1D16",
+    "--open": "#E0796A", "--open-soft": "#361B16", "--held": "#79B694", "--held-soft": "#14251C",
+  } as React.CSSProperties,
+  light: {
+    "--ink": "#2B1D16", "--ink2": "#5C4A3C", "--ink3": "#6B5B4C", "--rule": "#E8DCCB", "--rule2": "#D8C6B0",
+    "--acc": "#A8551F", "--acci": "#A8551F", "--acc-soft": "#FBEEE2", "--surf": "#FFFFFF", "--surf2": "#EFE7DD",
+    "--open": "#9B2C1F", "--open-soft": "#F7E4DF", "--held": "#3F6B52", "--held-soft": "#E6EFE9",
+  } as React.CSSProperties,
+  white: {
+    "--ink": "#2B1D16", "--ink2": "#5C4A3C", "--ink3": "#6B5B4C", "--rule": "#E8DCCB", "--rule2": "#D8C6B0",
+    "--acc": "#A8551F", "--acci": "#A8551F", "--acc-soft": "#FBEEE2", "--surf": "#F5EFE8", "--surf2": "#EFE7DD",
+    "--open": "#9B2C1F", "--open-soft": "#F7E4DF", "--held": "#3F6B52", "--held-soft": "#E6EFE9",
+  } as React.CSSProperties,
+};
+
+const toneBg: Record<Tone, string> = {
+  dark: "bg-[#171009]",
+  light: "bg-[#F5EFE8]",
+  white: "bg-[#FFFFFF]",
+};
+
 const btnPrimary =
   "inline-flex items-center justify-center gap-2 bg-[#D97A3D] hover:bg-[#A8551F] text-white font-body text-sm font-medium px-6 py-3 rounded-full transition-colors";
 const btnQuiet =
-  "inline-flex items-center justify-center gap-2 border border-[#4E3A2C] text-[#F0B287] hover:bg-[#33210F] font-body text-sm font-medium px-6 py-3 rounded-full transition-colors";
-const bodyText = "font-body text-base leading-relaxed text-[#C3B3A4]";
-const cardCls = "rounded-2xl border border-[#3A2A20] bg-[#221811]";
+  "inline-flex items-center justify-center gap-2 border border-[color:var(--rule2)] text-[color:var(--acci)] hover:bg-[color:var(--acc-soft)] font-body text-sm font-medium px-6 py-3 rounded-full transition-colors";
+const bodyText = "font-body text-base leading-relaxed text-[color:var(--ink2)]";
+const cardCls = "rounded-2xl border border-[color:var(--rule)] bg-[color:var(--surf)]";
 
 const Eyebrow = ({ children }: { children: ReactNode }) => (
-  <p className="font-body text-sm font-semibold uppercase tracking-widest text-[#E8996A] mb-4">
+  <p className="font-body text-sm font-semibold uppercase tracking-widest text-[color:var(--acc)] mb-4">
     {children}
   </p>
 );
@@ -274,27 +283,30 @@ const Section = ({
   id,
   eyebrow,
   title,
+  tone,
   children,
 }: {
   id: string;
   eyebrow: string;
   title: string;
+  tone: Tone;
   children: ReactNode;
 }) => (
-  <motion.section
-    id={id}
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-80px" }}
-    transition={{ duration: 0.6 }}
-    className="scroll-mt-24 py-16 lg:py-20 border-t border-[#3A2A20] first:border-t-0"
-  >
-    <Eyebrow>{eyebrow}</Eyebrow>
-    <h2 className="font-heading text-3xl lg:text-4xl font-extrabold text-[#F5EFE8] mb-6 max-w-3xl">
-      {title}
-    </h2>
-    {children}
-  </motion.section>
+  <section id={id} style={tones[tone]} className={`scroll-mt-24 py-16 lg:py-20 ${toneBg[tone]}`}>
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6 }}
+      className="container mx-auto px-6"
+    >
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 className="font-heading text-3xl lg:text-4xl font-extrabold text-[color:var(--ink)] mb-6 max-w-3xl">
+        {title}
+      </h2>
+      {children}
+    </motion.div>
+  </section>
 );
 
 const Prose = ({ children }: { children: ReactNode }) => (
@@ -304,28 +316,29 @@ const Prose = ({ children }: { children: ReactNode }) => (
 const Diagram = () => (
   <figure
     id="positioning-diagram"
-    className="my-10"
+    style={tones.dark}
+    className="my-10 rounded-2xl bg-gradient-to-b from-[#171009] to-[#221811] p-6 lg:p-10"
     aria-label="Diagram: five source systems each hold a fragment of one journey. A journey-level assurance layer sits above them, holding the whole journey end to end, with an event log, reconciliation rules, an exception ledger with named owners, and evidence."
   >
-    <p className="font-body text-xs font-semibold uppercase tracking-widest text-[#9A8879] mb-4">
+    <p className="font-body text-xs font-semibold uppercase tracking-widest text-[color:var(--ink3)] mb-4">
       One journey, held end to end
     </p>
     {/* Journey line */}
     <div className="relative h-14 mb-6" aria-hidden="true">
-      <div className="absolute left-0 right-0 top-8 h-px bg-[#4E3A2C]" />
+      <div className="absolute left-0 right-0 top-8 h-px bg-[color:var(--rule2)]" />
       {[2, 22, 62, 82, 98].map((p) => (
         <span
           key={p}
-          className="absolute top-8 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E8996A]"
+          className="absolute top-8 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[color:var(--acc)]"
           style={{ left: `${p}%` }}
         />
       ))}
       <span
-        className="absolute top-8 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E0796A] ring-4 ring-[#E0796A]/25"
+        className="absolute top-8 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[color:var(--open)] ring-4 ring-[#E0796A]/25"
         style={{ left: "42%" }}
       />
       <span
-        className="absolute top-0 -translate-x-1/2 whitespace-nowrap font-body text-xs font-medium text-[#E0796A]"
+        className="absolute top-0 -translate-x-1/2 whitespace-nowrap font-body text-xs font-medium text-[color:var(--open)]"
         style={{ left: "42%" }}
       >
         deviation, owner assigned
@@ -333,15 +346,15 @@ const Diagram = () => (
     </div>
 
     {/* Layer box */}
-    <div className="rounded-2xl border-2 border-[#E8996A] bg-[#33210F] p-5 lg:p-7 shadow-[0_0_40px_rgba(232,153,106,0.22)]">
-      <p className="font-heading text-lg lg:text-xl font-bold text-[#F0B287] mb-4">
+    <div className="rounded-2xl border-2 border-[color:var(--acc)] bg-[color:var(--acc-soft)] p-5 lg:p-7 shadow-[0_0_40px_rgba(232,153,106,0.22)]">
+      <p className="font-heading text-lg lg:text-xl font-bold text-[color:var(--acci)] mb-4">
         Journey-level assurance layer
       </p>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {layerCells.map(([t, s]) => (
-          <div key={t} className="rounded-xl border border-[#4E3A2C] bg-[#171009] p-4">
-            <p className="font-heading text-sm lg:text-base font-bold text-[#F5EFE8]">{t}</p>
-            <p className="font-body text-xs lg:text-sm text-[#C3B3A4] mt-1">{s}</p>
+          <div key={t} className="rounded-xl border border-[color:var(--rule2)] bg-[#171009] p-4">
+            <p className="font-heading text-sm lg:text-base font-bold text-[color:var(--ink)]">{t}</p>
+            <p className="font-body text-xs lg:text-sm text-[color:var(--ink2)] mt-1">{s}</p>
           </div>
         ))}
       </div>
@@ -359,65 +372,55 @@ const Diagram = () => (
       {systems.map((s) => (
         <div
           key={s}
-          className="rounded-xl border border-[#3A2A20] bg-[#2B1D16] px-4 py-3 lg:py-5 text-center font-body text-sm lg:text-base font-medium text-[#F5EFE8] lg:flex lg:items-center lg:justify-center"
+          className="rounded-xl border border-[color:var(--rule)] bg-[color:var(--surf2)] px-4 py-3 lg:py-5 text-center font-body text-sm lg:text-base font-medium text-[color:var(--ink)] lg:flex lg:items-center lg:justify-center"
         >
           {s}
         </div>
       ))}
     </div>
-    <figcaption className="mt-5 text-center font-body text-xs font-semibold uppercase tracking-widest text-[#9A8879]">
+    <figcaption className="mt-5 text-center font-body text-xs font-semibold uppercase tracking-widest text-[color:var(--ink3)]">
       Each holds a fragment · infrastructure you already own
     </figcaption>
   </figure>
 );
 
-const Arrow = () => (
-  <span className="flex items-center justify-center text-[#E8996A] shrink-0" aria-hidden="true">
-    <ArrowRight className="hidden lg:block h-5 w-5" />
-    <ArrowDown className="lg:hidden h-5 w-5" />
-  </span>
-);
-
-const Flow = () => (
-  <div id="method-flow" className="my-8">
-    <ol className="flex flex-col lg:flex-row lg:items-stretch gap-3">
-      {flow.map((g, gi) => (
-        <li key={g.group} className="contents">
-          <div className="lg:flex-1 flex flex-col">
-            <p className="font-body text-xs font-semibold uppercase tracking-widest text-[#E8996A] mb-2 text-center">
-              {g.group}
-            </p>
-            <div className="flex-1 flex flex-col lg:flex-row gap-2 rounded-2xl border border-dashed border-[#4E3A2C] p-2">
-              {g.nodes.map((n, ni) => (
-                <div key={n.name} className="contents">
-                  <div className={`${cardCls} flex-1 p-4`}>
-                    <n.Icon className="h-6 w-6 text-[#E8996A] mb-2" aria-hidden="true" />
-                    <h3 className="font-heading text-base font-bold text-[#F5EFE8]">{n.name}</h3>
-                    <p className="font-body text-sm text-[#C3B3A4] mt-1">{n.desc}</p>
-                  </div>
-                  {ni === 0 && <Arrow />}
-                </div>
-              ))}
-            </div>
+const MethodFlow = () => (
+  <div id="method-flow" className="mt-8 grid grid-cols-1 lg:grid-cols-3 lg:border-t lg:border-[color:var(--rule)]">
+    {phases.map((ph, i) => (
+      <div
+        key={ph.kicker}
+        className={`relative pt-8 pb-2 border-b border-[color:var(--rule)] lg:border-b-0 ${
+          i === 0 ? "lg:pr-8" : "lg:px-8 lg:border-l lg:border-[color:var(--rule)]"
+        } ${i === phases.length - 1 ? "border-b-0" : ""}`}
+      >
+        <p className="font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-[color:var(--ink3)] mb-6">
+          {ph.kicker}
+        </p>
+        {ph.verbs.map(([verb, desc]) => (
+          <div key={verb} className="mb-7">
+            <h3 className="font-heading text-[30px] leading-tight font-extrabold text-[color:var(--acc)] mb-1.5">
+              {verb}
+            </h3>
+            <p className="font-body text-base text-[color:var(--ink2)]">{desc}</p>
           </div>
-          {gi < flow.length - 1 && (
-            <div className="lg:self-center lg:pt-6">
-              <Arrow />
-            </div>
-          )}
-        </li>
-      ))}
-    </ol>
-    <div className="mt-3 rounded-b-2xl border-x border-b border-[#4E3A2C] px-4 py-2 text-center font-body text-xs text-[#C3B3A4]">
-      <span aria-hidden="true">&larr; </span>
-      Prove returns to Map: extends to the next process without rebuilding
-    </div>
+        ))}
+        {i < phases.length - 1 && (
+          <span
+            aria-hidden="true"
+            className="absolute left-0 -bottom-[13px] lg:left-auto lg:bottom-auto lg:-right-[13px] lg:top-7 z-10 grid h-[26px] w-[26px] place-items-center rounded-full bg-[#171009] text-base text-[color:var(--acc)]"
+          >
+            <span className="lg:hidden">&darr;</span>
+            <span className="hidden lg:inline">&rarr;</span>
+          </span>
+        )}
+      </div>
+    ))}
   </div>
 );
 
 const OperationalAssurance = () => {
   return (
-    <div className="min-h-screen bg-[#171009] text-[#F5EFE8]">
+    <div style={tones.dark} className="min-h-screen bg-[#171009] text-[color:var(--ink)]">
       <Navbar />
 
       {/* Hero */}
@@ -429,24 +432,24 @@ const OperationalAssurance = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl"
           >
-            <h1 className="font-heading text-4xl lg:text-5xl font-extrabold text-[#F5EFE8] mb-6">
+            <h1 className="font-heading text-4xl lg:text-5xl font-extrabold text-[color:var(--ink)] mb-6">
               We track your systems, reconcile what they show,{" "}
-              <span className="text-[#E8996A]">
+              <span className="text-[color:var(--acc)]">
                 and surface the revenue and performance gaps hiding between them.
               </span>
             </h1>
-            <p className="font-body text-lg lg:text-xl leading-relaxed text-[#C3B3A4] mb-4 max-w-3xl">
+            <p className="font-body text-lg lg:text-xl leading-relaxed text-[color:var(--ink2)] mb-4 max-w-3xl">
               We connect the systems your critical operations run across, reconcile records against
               source truth, and give every discrepancy a named owner and a traceable history.
             </p>
-            <p className="font-body text-base leading-relaxed text-[#C3B3A4] mb-6 max-w-3xl">
+            <p className="font-body text-base leading-relaxed text-[color:var(--ink2)] mb-6 max-w-3xl">
               Start with a 30-minute discovery session to diagnose what is actually happening in
               your operation, scoped to where you hurt most, before committing to anything further.
             </p>
-            <div className="rounded-xl border-l-4 border-[#E8996A] bg-[#221811] p-4 mb-8 max-w-3xl font-body text-base text-[#F5EFE8]">
+            <div className="rounded-xl border-l-4 border-[color:var(--acc)] bg-[color:var(--surf)] p-4 mb-8 max-w-3xl font-body text-base text-[color:var(--ink)]">
               <b>If we find nothing worth fixing, we tell you that in writing, with the baseline that proves it.</b>{" "}
               See{" "}
-              <a href="#questions" className="text-[#F0B287] hover:underline">
+              <a href="#questions" className="text-[color:var(--acci)] hover:underline">
                 why we work this way
               </a>
               .
@@ -463,8 +466,7 @@ const OperationalAssurance = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-6">
-        <Section id="problem" eyebrow="The problem" title="Nobody holds the whole journey.">
+        <Section id="problem" tone="light" eyebrow="The problem" title="Nobody holds the whole journey.">
           <Prose>
             <p className={bodyText}>
               For a critical case, shipment, payment, permit, or service request, your operations team
@@ -473,14 +475,14 @@ const OperationalAssurance = () => {
               and chat threads without a single accountable owner.
             </p>
             <p className={bodyText}>
-              The root failure is structural: <strong className="text-[#F5EFE8]">no single system holds the complete journey</strong>.
+              The root failure is structural: <strong className="text-[color:var(--ink)]">no single system holds the complete journey</strong>.
               Each application holds only a fragment. Your skilled people spend their days doing what
               disconnected systems cannot: chasing status, re-keying data across boundaries,
               reconciling records by hand, and rebuilding history after the fact. That shadow work is
               invisible in the status reports you receive, which is precisely why it never gets fixed.
             </p>
             <p className={bodyText}>
-              <strong className="text-[#F5EFE8]">This breakdown is sharpest when the operation crosses more than one organization</strong>,
+              <strong className="text-[color:var(--ink)]">This breakdown is sharpest when the operation crosses more than one organization</strong>,
               where each party sees only its own leg of the journey and nobody can see the whole
               picture. That is the hardest version of this problem, and the exact one we are built to
               solve.
@@ -488,7 +490,7 @@ const OperationalAssurance = () => {
           </Prose>
         </Section>
 
-        <Section id="practice" eyebrow="In practice" title="How an approved waiver becomes lost revenue.">
+        <Section id="practice" tone="dark" eyebrow="In practice" title="How an approved waiver becomes lost revenue.">
           <div className="max-w-3xl space-y-4">
             <p className={`${bodyText} text-sm italic`}>
               An illustrative example. One fee waiver, three systems, each doing its job.
@@ -496,18 +498,18 @@ const OperationalAssurance = () => {
           </div>
 
           <div className={`${cardCls} p-5 lg:p-6 mt-4 max-w-4xl`}>
-            <p className="font-body text-xs font-semibold uppercase tracking-widest text-[#9A8879] mb-4">
+            <p className="font-body text-xs font-semibold uppercase tracking-widest text-[color:var(--ink3)] mb-4">
               One operational journey · three disconnected systems of record
             </p>
-            <ol className="divide-y divide-[#3A2A20]">
+            <ol className="divide-y divide-[color:var(--rule)]">
               {timeline.map((ev, i) =>
                 "gap" in ev ? (
                   <li key={i} className="py-4">
-                    <div className="rounded-xl border border-dashed border-[#E0796A] bg-[#361B16] p-4">
-                      <p className="font-heading text-sm font-bold text-[#E0796A]">
+                    <div className="rounded-xl border border-dashed border-[color:var(--open)] bg-[color:var(--open-soft)] p-4">
+                      <p className="font-heading text-sm font-bold text-[color:var(--open)]">
                         Gap opens: approved term and live tariff never compared
                       </p>
-                      <p className="font-body text-sm text-[#C3B3A4] mt-1">
+                      <p className="font-body text-sm text-[color:var(--ink2)] mt-1">
                         Nobody is responsible for checking that what was approved is what the system
                         is still doing.
                       </p>
@@ -515,17 +517,17 @@ const OperationalAssurance = () => {
                   </li>
                 ) : (
                   <li key={i} className="grid grid-cols-[4.5rem_1fr] sm:grid-cols-[5.5rem_1fr] gap-4 py-4">
-                    <span className="font-heading text-sm font-extrabold text-[#E8996A]">{ev.day}</span>
-                    <div className="font-body text-base text-[#F5EFE8]">
+                    <span className="font-heading text-sm font-extrabold text-[color:var(--acc)]">{ev.day}</span>
+                    <div className="font-body text-base text-[color:var(--ink)]">
                       {ev.what}
                       <span
                         className={`ml-2 inline-block rounded-full px-2 py-0.5 text-xs font-semibold align-middle ${
-                          ev.open ? "bg-[#361B16] text-[#E0796A]" : "bg-[#14251C] text-[#79B694]"
+                          ev.open ? "bg-[color:var(--open-soft)] text-[color:var(--open)]" : "bg-[color:var(--held-soft)] text-[color:var(--held)]"
                         }`}
                       >
                         {ev.chip}
                       </span>
-                      <span className="block text-sm text-[#9A8879] mt-1">{ev.src}</span>
+                      <span className="block text-sm text-[color:var(--ink3)] mt-1">{ev.src}</span>
                     </div>
                   </li>
                 ),
@@ -545,7 +547,7 @@ const OperationalAssurance = () => {
           </div>
         </Section>
 
-        <Section id="alternatives" eyebrow="What you already own" title="Why the tools you already bought have not closed this.">
+        <Section id="alternatives" tone="light" eyebrow="What you already own" title="Why the tools you already bought have not closed this.">
           <div className="max-w-3xl">
             <p className={bodyText}>
               Most organizations facing this breakdown have already invested in adjacent enterprise
@@ -556,22 +558,22 @@ const OperationalAssurance = () => {
           <div className={`${cardCls} overflow-x-auto`}>
             <table className="w-full text-left font-body text-sm lg:text-base">
               <thead>
-                <tr className="border-b border-[#3A2A20] bg-[#2B1D16]">
-                  <th scope="col" className="px-4 py-3 font-heading font-bold text-[#F5EFE8] w-2/5">
+                <tr className="border-b border-[color:var(--rule)] bg-[color:var(--surf2)]">
+                  <th scope="col" className="px-4 py-3 font-heading font-bold text-[color:var(--ink)] w-2/5">
                     What you may already have
                   </th>
-                  <th scope="col" className="px-4 py-3 font-heading font-bold text-[#F5EFE8]">
+                  <th scope="col" className="px-4 py-3 font-heading font-bold text-[color:var(--ink)]">
                     What it leaves open
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#3A2A20]">
+              <tbody className="divide-y divide-[color:var(--rule)]">
                 {comparison.map(([tool, gap]) => (
                   <tr key={tool}>
-                    <th scope="row" className="px-4 py-3 align-top font-semibold text-[#F5EFE8]">
+                    <th scope="row" className="px-4 py-3 align-top font-semibold text-[color:var(--ink)]">
                       {tool}
                     </th>
-                    <td className="px-4 py-3 align-top text-[#C3B3A4] leading-relaxed">{gap}</td>
+                    <td className="px-4 py-3 align-top text-[color:var(--ink2)] leading-relaxed">{gap}</td>
                   </tr>
                 ))}
               </tbody>
@@ -579,31 +581,28 @@ const OperationalAssurance = () => {
           </div>
           <div className="max-w-3xl mt-6">
             <p className={bodyText}>
-              That is the layer we build, <strong className="text-[#F5EFE8]">on infrastructure you already own</strong>. No new
+              That is the layer we build, <strong className="text-[color:var(--ink)]">on infrastructure you already own</strong>. No new
               platform to license, staff, and defend at your next architecture review.
             </p>
           </div>
         </Section>
 
-        <Section id="method" eyebrow="How we do it" title="We map. We reconcile. We route. We prove.">
-          <Flow />
-          <div className="grid md:grid-cols-3 gap-4 mt-8">
-            {controlModel.map(([t, d]) => (
-              <div key={t} className={`${cardCls} p-5`}>
-                <h3 className="font-heading text-base font-bold text-[#F0B287] mb-2">{t}</h3>
-                <p className="font-body text-sm leading-relaxed text-[#C3B3A4]">{d}</p>
-              </div>
-            ))}
-          </div>
-          <div className="max-w-3xl mt-6">
-            <p className={bodyText}>
+        <Section id="method" tone="dark" eyebrow="How we do it" title="We map. We reconcile. We route. We prove.">
+          <MethodFlow />
+          <div className="mt-8 border-t border-[color:var(--rule)] pt-6 max-w-3xl font-body text-[15px] leading-relaxed text-[color:var(--ink3)]">
+            <p>
+              <b className="text-[color:var(--ink)]">Rules decide, AI assists, people approve.</b>{" "}
+              Integration, rules and evidence are deterministic. AI reads documents and matches
+              records. Every consequential action needs human approval.
+            </p>
+            <p className="mt-3">
               We start with one critical process. The event history, exception ledger and reporting
               extend to the next process without rebuilding.
             </p>
           </div>
         </Section>
 
-        <Section id="origin" eyebrow="Why JB Agile" title="Built for operations where a gap is expensive.">
+        <Section id="origin" tone="light" eyebrow="Why JB Agile" title="Built for operations where a gap is expensive.">
           <Prose>
             <p className={bodyText}>
               Our team has delivered mission-critical platforms and complex integration across
@@ -614,67 +613,66 @@ const OperationalAssurance = () => {
             <p className={bodyText}>
               This is what we are delivering right now: JB Agile is currently the technology partner
               on an active programme building an operational assurance layer for a{" "}
-              <strong className="text-[#F5EFE8]">regulated, multi-party operation</strong>, covering multi-agency integration,
+              <strong className="text-[color:var(--ink)]">regulated, multi-party operation</strong>, covering multi-agency integration,
               automated reconciliation, business rules, SLA monitoring, exception routing, and
               evidentiary audit reporting. <em>It is an active engagement, and we describe it that way.</em>{" "}
               A discovery session is the first step to evaluating how this applies to your operation.
             </p>
           </Prose>
         </Section>
-      </div>
 
       {/* Offer band */}
       <section id="offer" className="scroll-mt-24 bg-[#2B1D16] py-16 lg:py-24">
         <div className="container mx-auto px-6">
           <Eyebrow>The offer</Eyebrow>
-          <h2 className="font-heading text-3xl lg:text-4xl font-extrabold text-[#F5EFE8] mb-10 max-w-3xl">
+          <h2 className="font-heading text-3xl lg:text-4xl font-extrabold text-[color:var(--ink)] mb-10 max-w-3xl">
             Start bounded. Keep everything we build.
           </h2>
           <div className="grid lg:grid-cols-2 gap-6 max-w-5xl">
             {steps.map((s) => (
-              <div key={s.n} className="rounded-2xl border border-[#3A2A20] bg-[#171009] p-6">
-                <p className="font-body text-xs font-semibold uppercase tracking-widest text-[#E8996A] mb-2">
+              <div key={s.n} className="rounded-2xl border border-[color:var(--rule)] bg-[#171009] p-6">
+                <p className="font-body text-xs font-semibold uppercase tracking-widest text-[color:var(--acc)] mb-2">
                   {s.n}
                 </p>
-                <h3 className="font-heading text-lg font-bold text-[#F5EFE8] mb-1">{s.title}</h3>
-                {s.meta && <p className="font-body text-xs text-[#9A8879] mb-3">{s.meta}</p>}
-                <p className="font-body text-sm leading-relaxed text-[#C3B3A4]">{s.body}</p>
+                <h3 className="font-heading text-lg font-bold text-[color:var(--ink)] mb-1">{s.title}</h3>
+                {s.meta && <p className="font-body text-xs text-[color:var(--ink3)] mb-3">{s.meta}</p>}
+                <p className="font-body text-sm leading-relaxed text-[color:var(--ink2)]">{s.body}</p>
                 {s.keep && (
-                  <p className="font-body text-sm font-semibold text-[#F0B287] mt-3">{s.keep}</p>
+                  <p className="font-body text-sm font-semibold text-[color:var(--acci)] mt-3">{s.keep}</p>
                 )}
               </div>
             ))}
           </div>
 
           <div className="grid lg:grid-cols-2 gap-6 max-w-5xl mt-6">
-            <div className="rounded-2xl border border-[#3A2A20] bg-[#171009] p-6">
-              <h3 className="font-heading text-lg font-bold text-[#F5EFE8] mb-3">How the diagnostic runs</h3>
-              <div className="space-y-3 font-body text-sm leading-relaxed text-[#C3B3A4]">
+            <div className="rounded-2xl border border-[color:var(--rule)] bg-[#171009] p-6">
+              <h3 className="font-heading text-lg font-bold text-[color:var(--ink)] mb-3">How the diagnostic runs</h3>
+              <div className="space-y-3 font-body text-sm leading-relaxed text-[color:var(--ink2)]">
                 <p>
-                  <b className="text-[#F5EFE8]">Week 1, Discovery &amp; Scope:</b> Kickoff interviews,
+                  <b className="text-[color:var(--ink)]">Week 1, Discovery &amp; Scope:</b> Kickoff interviews,
                   process walkthroughs, systems mapping, and agreeing boundary definitions with your
                   process and tech owners.
                 </p>
                 <p>
-                  <b className="text-[#F5EFE8]">Week 2, Breakpoints &amp; Rules:</b> Identifying
+                  <b className="text-[color:var(--ink)]">Week 2, Breakpoints &amp; Rules:</b> Identifying
                   reconciliation points, exception types, SLA clocks, evidentiary gaps, data quality
                   readiness, and baseline measurement.
                 </p>
                 <p>
-                  <b className="text-[#F5EFE8]">Week 3, Roadmap &amp; Commercial Case:</b>{" "}
+                  <b className="text-[color:var(--ink)]">Week 3, Roadmap &amp; Commercial Case:</b>{" "}
                   Prioritization, pilot architecture outline, acceptance measures, delivery
                   estimate, and an executive walkthrough with your team.
                 </p>
               </div>
             </div>
-            <div className="rounded-2xl border border-[#3A2A20] bg-[#171009] p-6">
-              <h3 className="font-heading text-lg font-bold text-[#F5EFE8] mb-3">
+            <div className="rounded-2xl border border-[color:var(--rule)] bg-[#171009] p-6">
+              <h3 className="font-heading text-lg font-bold text-[color:var(--ink)] mb-3">
                 What we need from you to start
               </h3>
-              <p className="font-body text-sm leading-relaxed text-[#C3B3A4]">
+              <p className="font-body text-sm leading-relaxed text-[color:var(--ink2)]">
                 An identified process owner and technology owner, access to relevant domain
                 stakeholders, and either live or sanitized sample data. (See{" "}
-                <a href="#notfor" className="text-[#F0B287] hover:underline">
+                <a href="#notfor" className="text-[color:var(--acci)] hover:underline">
                   who this isn't for
                 </a>{" "}
                 if either owner is unassigned).
@@ -684,15 +682,14 @@ const OperationalAssurance = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-6">
-        <Section id="notfor" eyebrow="Who this is not for" title="Four reasons to stop reading.">
-          <ul className="list-disc pl-6 space-y-3 max-w-3xl font-body text-base leading-relaxed text-[#C3B3A4] marker:text-[#E8996A]">
+        <Section id="notfor" tone="light" eyebrow="Who this is not for" title="Four reasons to stop reading.">
+          <ul className="list-disc pl-6 space-y-3 max-w-3xl font-body text-base leading-relaxed text-[color:var(--ink2)] marker:text-[color:var(--acc)]">
             {notFor.map((item, i) => (
               <li key={i}>
                 {item ?? (
                   <>
                     There is no identified process owner and no technology owner.{" "}
-                    <strong className="text-[#F5EFE8]">No accountable owner, no diagnostic:</strong> we'd rather say that here
+                    <strong className="text-[color:var(--ink)]">No accountable owner, no diagnostic:</strong> we'd rather say that here
                     than three meetings in
                   </>
                 )}
@@ -701,21 +698,20 @@ const OperationalAssurance = () => {
           </ul>
         </Section>
 
-        <Section id="questions" eyebrow="Questions buyers ask" title="The ones we get first.">
+        <Section id="questions" tone="white" eyebrow="Questions buyers ask" title="The ones we get first.">
           <Accordion type="multiple" className={`${cardCls} px-5 max-w-4xl`}>
             {faqs.map((f, i) => (
-              <AccordionItem key={f.q} value={`faq-${i}`} className="border-[#3A2A20]">
-                <AccordionTrigger className="text-left font-heading text-base font-bold text-[#F5EFE8] hover:no-underline hover:text-[#F0B287]">
+              <AccordionItem key={f.q} value={`faq-${i}`} className="border-[color:var(--rule)]">
+                <AccordionTrigger className="text-left font-heading text-base font-bold text-[color:var(--ink)] hover:no-underline hover:text-[color:var(--acci)]">
                   {f.q}
                 </AccordionTrigger>
-                <AccordionContent className="font-body text-base leading-relaxed text-[#C3B3A4]">
+                <AccordionContent className="font-body text-base leading-relaxed text-[color:var(--ink2)]">
                   {f.a}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </Section>
-      </div>
 
       {/* Closing CTA band */}
       <section
@@ -724,10 +720,10 @@ const OperationalAssurance = () => {
         style={{ background: "linear-gradient(115deg,#4A2F1E 0%,#2B1D16 45%,#171009 100%)" }}
       >
         <div className="container mx-auto px-6">
-          <h2 className="font-heading text-3xl lg:text-4xl font-extrabold text-[#F5EFE8] mb-4 max-w-2xl">
+          <h2 className="font-heading text-3xl lg:text-4xl font-extrabold text-[color:var(--ink)] mb-4 max-w-2xl">
             Start with a 30-minute discovery session.
           </h2>
-          <p className="font-body text-lg leading-relaxed text-[#C3B3A4] max-w-xl">
+          <p className="font-body text-lg leading-relaxed text-[color:var(--ink2)] max-w-xl">
             We agree which process matters most, who owns it, and what data is available. If a
             diagnostic is not worth doing, we will say so.
           </p>
@@ -735,19 +731,18 @@ const OperationalAssurance = () => {
             <Link to="/contact" className={btnPrimary}>
               Book a discovery session
             </Link>
-            <a href="mailto:jawad@jb-agiledev.com" className="font-body text-sm text-[#F0B287] hover:underline">
-              jawad@jb-agiledev.com
-            </a>
           </div>
         </div>
       </section>
 
-      <div className="bg-[#171009] border-t border-[#3A2A20] py-6">
-        <p className="container mx-auto px-6 font-body text-xs leading-relaxed text-[#9A8879] max-w-4xl">
+      <div className="bg-[#171009] border-t border-[color:var(--rule)] py-6">
+        <div className="container mx-auto px-6">
+        <p className="font-body text-xs leading-relaxed text-[color:var(--ink3)] max-w-4xl">
           The control register maps to the control frameworks your auditors already work in.
           Information handling follows ISO 27001 practice. AI-assisted steps are designed against
           NIST AI Risk Management Framework structure. These are alignments, not certifications.
         </p>
+        </div>
       </div>
       <Footer />
     </div>
