@@ -77,27 +77,56 @@ const systems = [
   "Email, files, spreadsheets",
 ];
 
-const phases = [
+const planeTile = {
+  see: ["bg-[#2B1D16] border-[#4E3A2C]", "bg-[#2B1D16] border-[#4E3A2C]", "bg-[#2B1D16] border-[#4E3A2C]", "bg-[#2B1D16] border-[#4E3A2C]"],
+  check: ["bg-[#33210F] border-[#8A5A3A]", "bg-[#361B16] border-[#E0796A]", "bg-[#33210F] border-[#8A5A3A]", "bg-[#33210F] border-[#8A5A3A]"],
+  act: [
+    "bg-[rgba(232,153,106,0.35)] border-[#E8996A]",
+    "bg-[rgba(232,153,106,0.18)] border-[#E8996A]",
+    "bg-[rgba(232,153,106,0.18)] border-[#E8996A]",
+    "bg-[rgba(232,153,106,0.35)] border-[#E8996A]",
+  ],
+};
+
+const planes = [
   {
-    kicker: "See the whole journey",
-    verbs: [
-      ["Map", "The flow, systems, handoffs and controls"],
-      ["Track", "Every case across systems, in one history"],
-    ],
+    top: 40,
+    tiles: planeTile.act,
+    cls: "bg-[rgba(217,122,61,0.16)] border-[#E8996A] shadow-[0_0_60px_rgba(217,122,61,0.45)]",
   },
   {
-    kicker: "Check it against the rules",
-    verbs: [
-      ["Reconcile", "Records against source data and your rules"],
-      ["Detect", "Missing, conflicting or late events, early"],
-    ],
+    top: 150,
+    tiles: planeTile.check,
+    cls: "bg-[rgba(43,29,22,0.92)] border-[#8A5A3A] shadow-[0_30px_60px_rgba(0,0,0,0.5)]",
   },
   {
-    kicker: "Act and keep the evidence",
-    verbs: [
-      ["Route", "Each exception to an owner, with an SLA clock"],
-      ["Prove", "Traceable history and audit evidence on demand"],
-    ],
+    top: 260,
+    tiles: planeTile.see,
+    cls: "bg-[#221811] border-[#4E3A2C] shadow-[0_30px_60px_rgba(0,0,0,0.5)]",
+  },
+];
+
+const layers = [
+  {
+    kicker: "Act",
+    verbs: "Route · Prove",
+    desc: "Each exception to an owner with an SLA clock. Evidence on demand.",
+    color: "#E8996A",
+    top: "lg:top-[180px]",
+  },
+  {
+    kicker: "Check",
+    verbs: "Reconcile · Detect",
+    desc: "Records against source data and your rules. Gaps caught early.",
+    color: "#F0B287",
+    top: "lg:top-[310px]",
+  },
+  {
+    kicker: "See",
+    verbs: "Map · Track",
+    desc: "The flow across your systems, every case in one history.",
+    color: "#C3B3A4",
+    top: "lg:top-[440px]",
   },
 ];
 
@@ -384,43 +413,71 @@ const Diagram = () => (
   </figure>
 );
 
-const MethodFlow = () => (
-  <div id="method-flow" className="mt-8 grid grid-cols-1 lg:grid-cols-3 lg:border-t lg:border-[color:var(--rule)]">
-    {phases.map((ph, i) => (
-      <div
-        key={ph.kicker}
-        className={`relative pt-8 pb-2 border-b border-[color:var(--rule)] lg:border-b-0 ${
-          i === 0 ? "lg:pr-8" : "lg:px-8 lg:border-l lg:border-[color:var(--rule)]"
-        } ${i === phases.length - 1 ? "border-b-0" : ""}`}
-      >
-        <p className="font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-[color:var(--ink3)] mb-6">
-          {ph.kicker}
+const LayeredStack = () => (
+  <div id="method-flow" className="relative -mt-6 md:-mt-10 lg:-mt-20">
+    <div className="grid lg:grid-cols-[540px_1fr] gap-6 lg:gap-0">
+      <div>
+        <div
+          className="relative mx-auto lg:mx-0 w-[324px] h-[396px] md:w-[432px] md:h-[528px] lg:w-[540px] lg:h-[660px]"
+          aria-hidden="true"
+        >
+          <div
+            className="absolute inset-0 origin-top-left scale-[0.6] md:scale-[0.8] lg:scale-100 w-[540px] h-[660px]"
+            style={{ perspective: "1400px" }}
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse 50% 42% at 50% 55%, rgba(217,122,61,0.22), rgba(23,16,9,0) 100%)",
+              }}
+            />
+            {planes.map((pl) => (
+              <div
+                key={pl.top}
+                className={`absolute left-[80px] h-[380px] w-[380px] box-border grid grid-cols-2 gap-[18px] p-11 rounded-[28px] border-[1.5px] ${pl.cls}`}
+                style={{ top: pl.top, transform: "rotateX(60deg) rotateZ(-45deg)" }}
+              >
+                {pl.tiles.map((t, i) => (
+                  <div key={i} className={`rounded-[14px] border ${t}`} />
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+        <p className="mt-2 text-center lg:text-left lg:pl-2 font-body text-[13px] uppercase tracking-[0.06em] text-[color:var(--ink3)]">
+          Built on the systems you already own
         </p>
-        {ph.verbs.map(([verb, desc]) => (
-          <div key={verb} className="mb-7">
-            <h3 className="font-heading text-[30px] leading-tight font-extrabold text-[color:var(--acc)] mb-1.5">
-              {verb}
+      </div>
+
+      <div className="relative flex flex-col gap-8 lg:block lg:h-[660px]">
+        {layers.map((l) => (
+          <div key={l.kicker} className={`lg:absolute lg:left-[90px] lg:right-0 ${l.top} flex flex-col gap-1`}>
+            <span
+              aria-hidden="true"
+              className="hidden lg:block absolute -left-[140px] top-[22px] h-px w-[120px]"
+              style={{ background: `linear-gradient(90deg, rgba(232,153,106,0), ${l.color})` }}
+            />
+            <p
+              className="font-heading text-[13px] font-semibold uppercase tracking-[0.08em]"
+              style={{ color: l.color }}
+            >
+              {l.kicker}
+            </p>
+            <h3 className="font-heading text-[30px] leading-tight font-extrabold tracking-[-0.01em] text-[color:var(--ink)]">
+              {l.verbs}
             </h3>
-            <p className="font-body text-base text-[color:var(--ink2)]">{desc}</p>
+            <p className="font-body text-[15.5px] leading-normal text-[color:var(--ink2)]">{l.desc}</p>
           </div>
         ))}
-        {i < phases.length - 1 && (
-          <span
-            aria-hidden="true"
-            className="absolute left-0 -bottom-[13px] lg:left-auto lg:bottom-auto lg:-right-[13px] lg:top-7 z-10 grid h-[26px] w-[26px] place-items-center rounded-full bg-[#171009] text-base text-[color:var(--acc)]"
-          >
-            <span className="lg:hidden">&darr;</span>
-            <span className="hidden lg:inline">&rarr;</span>
-          </span>
-        )}
       </div>
-    ))}
+    </div>
   </div>
 );
 
 const OperationalAssurance = () => {
   return (
-    <div style={tones.dark} className="min-h-screen bg-[#171009] text-[color:var(--ink)]">
+    <div style={tones.dark} className="min-h-screen overflow-x-clip bg-[#171009] text-[color:var(--ink)]">
       <Navbar />
 
       {/* Hero */}
@@ -588,7 +645,7 @@ const OperationalAssurance = () => {
         </Section>
 
         <Section id="method" tone="dark" eyebrow="How we do it" title="We map. We reconcile. We route. We prove.">
-          <MethodFlow />
+          <LayeredStack />
           <div className="mt-8 border-t border-[color:var(--rule)] pt-6 max-w-3xl font-body text-[15px] leading-relaxed text-[color:var(--ink3)]">
             <p>
               <b className="text-[color:var(--ink)]">Rules decide, AI assists, people approve.</b>{" "}
