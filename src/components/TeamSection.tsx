@@ -42,7 +42,7 @@ const TeamSection = () => {
             </p>
             <h3 className="font-heading text-2xl font-bold text-text-dark mb-4">Jawad Bokhari</h3>
             <p className="font-body text-base leading-relaxed text-muted-foreground">
-              25 years of enterprise platform delivery across telecoms, banking, healthcare, and
+              25 years of enterprise platform delivery across telecoms, banking, defense, healthcare, and
               government. Founder of JB Agile and Head of Engineering at a global
               customer-engagement software company, where he led ground-up development of its CX
               platform — from solo engineer to an 80+ engineer organization — now live across

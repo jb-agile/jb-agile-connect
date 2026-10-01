@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Activity, Landmark, Radio, Building2, HeartPulse, Zap } from "lucide-react";
+import { Activity, Landmark, Radio, Shield, Building2, HeartPulse, Zap } from "lucide-react";
 
 const stats = [
   { value: "25", label: "Years enterprise delivery" },
@@ -20,6 +20,12 @@ const sectors = [
     sector: "Telecoms",
     geo: "Pakistan",
     body: "Carrier-grade billing and customer platforms serving millions of subscribers, built for continuous uptime.",
+  },
+  {
+    icon: Shield,
+    sector: "Defense",
+    geo: "Pakistan",
+    body: "Secure, mission-critical platforms and integration for defense organisations, built for restricted environments.",
   },
   {
     icon: Building2,
@@ -101,7 +107,7 @@ const TrackRecordSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 mb-16"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16"
         >
           {sectors.map((s) => (
             <div
