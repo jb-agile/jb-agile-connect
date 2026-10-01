@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const services = [
   {
@@ -76,6 +77,11 @@ const ServicesSection = () => {
             </motion.div>
           ))}
         </div>
+        <p className="mt-8 font-body text-sm text-muted-foreground">
+          <Link to="/operational-assurance" className="font-medium text-accent hover:underline">
+            Operational Assurance: see the offer &rarr;
+          </Link>
+        </p>
       </div>
     </section>
   );
