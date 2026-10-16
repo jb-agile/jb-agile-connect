@@ -91,22 +91,62 @@ const coreCells = [
 ];
 const interfaces = ["Dashboards and reports", "API and MCP gateway", "Alert dispatch"];
 
-const archPoints = [
+const specimenCls =
+  "rounded-xl bg-[color:var(--surf)] px-4 py-3.5 font-mono text-[13px] text-[color:var(--ink2)] shadow-[0_12px_28px_-18px_rgba(43,29,22,0.4)]";
+
+const builtIn: { t: string; d: string; specimen: ReactNode; last?: boolean }[] = [
   {
-    t: "Agents and agentless.",
+    t: "Any source, with or without agents",
     d: "Lightweight agents on high-value servers and endpoints; firewalls, routers and legacy appliances over syslog, SSH and NetFlow.",
+    specimen: (
+      <div className={`${specimenCls} flex flex-col gap-2`}>
+        {[
+          ["srv-db-01", "agent"],
+          ["fw-edge-02", "syslog"],
+          ["sw-core-01", "NetFlow"],
+        ].map(([h, via]) => (
+          <div key={h} className="flex justify-between gap-4">
+            <span>{h}</span>
+            <span className="text-[color:var(--acc)]">{via}</span>
+          </div>
+        ))}
+      </div>
+    ),
   },
   {
-    t: "Every alert mapped to MITRE ATT&CK.",
-    d: "Analysts see the tactic and technique behind each detection, not a vendor score.",
+    t: "Detections you can read",
+    d: "Every alert mapped to a MITRE ATT&CK tactic and technique, not a vendor score.",
+    specimen: (
+      <div className={`${specimenCls} flex flex-wrap items-center gap-x-2.5 gap-y-1`}>
+        <span className="rounded-md bg-[#171009] px-2 py-1 text-[#F0B287]">T1110</span>
+        <span>Brute force</span>
+        <span aria-hidden="true" className="text-[color:var(--rule2)]">→</span>
+        <span className="text-[color:var(--acc)]">Credential access</span>
+      </div>
+    ),
   },
   {
-    t: "Open API and MCP.",
-    d: "Your analysts query telemetry through open APIs, or through MCP with language models you host.",
+    t: "Your tools, your models",
+    d: "Query telemetry through open APIs, or through MCP with language models you host.",
+    specimen: (
+      <div className="flex flex-col gap-1.5 rounded-xl bg-[#171009] px-4 py-3.5 font-mono text-[13px] text-[#F5EFE8]">
+        <span>
+          <span className="text-[#E8996A]">GET</span> /alerts?severity=high
+        </span>
+        <span className="text-[#B8A595]">mcp › your-hosted-model › query</span>
+      </div>
+    ),
   },
   {
-    t: "No licence call-home.",
+    t: "No call-home, ever",
     d: "The platform never contacts an outside server to check seats or licences, so it keeps running if the link, or the vendor, disappears.",
+    specimen: (
+      <div className={`${specimenCls} flex items-center justify-between gap-4`}>
+        <span>Outbound connections</span>
+        <span className="font-heading text-3xl font-extrabold text-[color:var(--held)]">0</span>
+      </div>
+    ),
+    last: true,
   },
 ];
 
@@ -464,18 +504,40 @@ const NigehbaanSystems = () => {
           reporting and alerting.
         </p>
         <BoundaryDiagram />
-        <h3 className="font-heading text-xl font-bold text-[color:var(--ink)] mb-4">How it is built</h3>
-        <dl className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-5">
-          {archPoints.map((p) => (
-            <div key={p.t} className="border-t border-[color:var(--rule)] pt-4">
-              <dt className="font-heading text-base font-bold text-[color:var(--ink)]">{p.t}</dt>
-              <dd className="font-body text-sm leading-relaxed text-[color:var(--ink2)] mt-1">{p.d}</dd>
-            </div>
-          ))}
-        </dl>
       </Section>
 
-      <Section id="ownership" tone="light" eyebrow="Ownership" title="A platform you can inspect, change and own.">
+      <Section id="built-in" tone="light" eyebrow="Built in" title="Built for networks that stay closed.">
+        <ol className="relative mt-8 flex max-w-6xl flex-col gap-8 lg:gap-7">
+          <span
+            aria-hidden="true"
+            className="absolute left-[23px] top-6 bottom-6 w-0.5 bg-gradient-to-b from-[#D97A3D] to-[#D97A3D]/15"
+          />
+          {builtIn.map((x, i) => (
+            <li
+              key={x.t}
+              className="relative grid grid-cols-[48px_minmax(0,1fr)] gap-x-5 gap-y-4 lg:grid-cols-[48px_minmax(0,1fr)_420px] lg:gap-x-8 lg:items-center"
+            >
+              <span
+                className={`flex h-12 w-12 items-center justify-center rounded-full font-mono text-[13px] ring-[6px] ring-[#F5EFE8] ${
+                  x.last
+                    ? "bg-[#D97A3D] text-[#171009] shadow-[0_0_28px_rgba(217,122,61,0.7)]"
+                    : "bg-[#171009] text-[#F0B287] shadow-[0_0_24px_rgba(217,122,61,0.5)]"
+                }`}
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="font-heading text-xl lg:text-[22px] font-bold text-[color:var(--ink)]">{x.t}</h3>
+                <p className="mt-1.5 font-body text-base leading-relaxed text-[color:var(--ink2)] max-w-xl">{x.d}</p>
+              </div>
+              <div className="col-start-2 lg:col-start-3">{x.specimen}</div>
+            </li>
+          ))}
+        </ol>
+        <p className={`${monoLabel} mt-8`}>Examples are illustrative</p>
+      </Section>
+
+      <Section id="ownership" tone="dark" eyebrow="Ownership" title="A platform you can inspect, change and own.">
         <div className="grid lg:grid-cols-[1fr_1.3fr] gap-10 items-start">
           <div className="space-y-4">
             <p className={bodyText}>
