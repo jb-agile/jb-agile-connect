@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import Contact from "./pages/Contact.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
 import OperationalAssurance from "./pages/OperationalAssurance.tsx";
+import NigehbaanSystems from "./pages/NigehbaanSystems.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/operational-assurance" element={<OperationalAssurance />} />
+          <Route path="/products/nigehbaan" element={<NigehbaanSystems />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
