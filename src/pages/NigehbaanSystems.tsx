@@ -1,7 +1,7 @@
 import { useEffect, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { BellRing, Check, Cpu, Database, FileCheck2, KeyRound, ShieldCheck } from "lucide-react";
+import { BellRing, Check, Database, FileCheck2, KeyRound, ShieldCheck } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -42,27 +42,6 @@ const detections = [
   { t: "09:39:15", id: "T1021", what: "Remote service session between servers", sev: "High", ctl: "Lateral movement" },
 ];
 
-const questions = [
-  {
-    q: "Where are my logs?",
-    cloud: "Often in a data centre outside the country.",
-    diy: "In-country, while your team keeps it running.",
-    us: "Inside your boundary. Nothing needs to leave.",
-  },
-  {
-    q: "Who can change my detection rules?",
-    cloud: "The vendor, inside a closed product.",
-    diy: "Your team, in raw rule syntax.",
-    us: "Your team, on open rules mapped to MITRE ATT&CK.",
-  },
-  {
-    q: "Who do I call when it breaks?",
-    cloud: "An offshore ticket queue.",
-    diy: "Community forums.",
-    us: "Our engineers in Pakistan, under your access rules.",
-  },
-];
-
 const capabilities = [
   {
     icon: ShieldCheck,
@@ -85,44 +64,22 @@ const capabilities = [
   {
     icon: Database,
     title: "Open storage",
-    body: "The indexer is not forked and the store stays your choice: OpenSearch by default, with ClickHouse, PostgreSQL or archive storage scoped to your retention and budget.",
+    body: "Your data sits in an open store you control: OpenSearch by default, with other stores scoped to your retention and budget.",
     tag: "Open data",
   },
   {
     icon: BellRing,
     title: "Alerts where your team looks",
-    body: "Your own reports and alert rules, each routed to WhatsApp, a phone call, email or your ticketing system. On air-gapped sites alerts stay inside, or leave only over a connection you approve.",
-    tag: "WhatsApp · voice · email · syslog",
-  },
-  {
-    icon: Cpu,
-    title: "AI triage on your hardware",
-    body: "Each alert labelled real, noise or escalate, with a confidence score, by a model running on your own hardware. The analyst decides.",
-    tag: "Optional · in development",
+    body: "Your own reports and alert rules, routed to syslog, email or your ticketing system inside the boundary. Civil deployments can add phone calls or WhatsApp over a connection you approve.",
+    tag: "In-boundary · syslog · ticketing",
   },
 ];
 
-const frameworks = [
-  {
-    name: "PISF 2026",
-    who: "Federal and provincial ministries, divisions, autonomous bodies and critical information infrastructure",
-    what: "SIEM operation, 12-month log retention, audit and monitoring under the PKCERT SOC structure.",
-  },
-  {
-    name: "SBP Cyber Shield",
-    who: "Banks, microfinance banks and payment operators",
-    what: "Monitoring coverage and the evidence a maturity assessment asks for.",
-  },
-  {
-    name: "PTA CTDISR 2025",
-    who: "Telecom licensees",
-    what: "SIEM with custom use cases, one-year log retention, real-time critical alerts to the national telecom SOC.",
-  },
-  {
-    name: "Gulf and international",
-    who: "Regulated institutions in the region",
-    what: "NCA ECC, SAMA CSF and CBUAE next, with NIST SP 800-53 and ISO 27001 alignment.",
-  },
+const fanout = [
+  { name: "PISF 2026", duty: "SIEM operation and audit under the PKCERT SOC structure" },
+  { name: "SBP Cyber Shield", duty: "Monitoring coverage for the maturity assessment" },
+  { name: "PTA CTDISR 2025", duty: "Custom use case; real-time critical alert to the national telecom SOC" },
+  { name: "NCA ECC · next", duty: "2-12-3: continuous monitoring of event logs", next: true },
 ];
 
 const sources = ["Servers and endpoints", "Firewalls and routers", "Switches and legacy appliances", "Applications and directories"];
@@ -134,26 +91,62 @@ const coreCells = [
 ];
 const interfaces = ["Dashboards and reports", "API and MCP gateway", "Alert dispatch"];
 
-const archPoints = [
+const specimenCls =
+  "rounded-xl bg-[color:var(--surf)] px-4 py-3.5 font-mono text-[13px] text-[color:var(--ink2)] shadow-[0_12px_28px_-18px_rgba(43,29,22,0.4)]";
+
+const builtIn: { t: string; d: string; specimen: ReactNode; last?: boolean }[] = [
   {
-    t: "Agents and agentless.",
+    t: "Any source, with or without agents",
     d: "Lightweight agents on high-value servers and endpoints; firewalls, routers and legacy appliances over syslog, SSH and NetFlow.",
+    specimen: (
+      <div className={`${specimenCls} flex flex-col gap-2`}>
+        {[
+          ["srv-db-01", "agent"],
+          ["fw-edge-02", "syslog"],
+          ["sw-core-01", "NetFlow"],
+        ].map(([h, via]) => (
+          <div key={h} className="flex justify-between gap-4">
+            <span>{h}</span>
+            <span className="text-[color:var(--acc)]">{via}</span>
+          </div>
+        ))}
+      </div>
+    ),
   },
   {
-    t: "Every alert mapped to MITRE ATT&CK.",
-    d: "Analysts see the tactic and technique behind each detection, not a vendor score.",
+    t: "Detections you can read",
+    d: "Every alert mapped to a MITRE ATT&CK tactic and technique, not a vendor score.",
+    specimen: (
+      <div className={`${specimenCls} flex flex-wrap items-center gap-x-2.5 gap-y-1`}>
+        <span className="rounded-md bg-[#171009] px-2 py-1 text-[#F0B287]">T1110</span>
+        <span>Brute force</span>
+        <span aria-hidden="true" className="text-[color:var(--rule2)]">→</span>
+        <span className="text-[color:var(--acc)]">Credential access</span>
+      </div>
+    ),
   },
   {
-    t: "Open API and MCP.",
-    d: "Your analysts query telemetry through open APIs, or through MCP with language models you host.",
+    t: "Your tools, your models",
+    d: "Query telemetry through open APIs, or through MCP with language models you host.",
+    specimen: (
+      <div className="flex flex-col gap-1.5 rounded-xl bg-[#171009] px-4 py-3.5 font-mono text-[13px] text-[#F5EFE8]">
+        <span>
+          <span className="text-[#E8996A]">GET</span> /alerts?severity=high
+        </span>
+        <span className="text-[#B8A595]">mcp › your-hosted-model › query</span>
+      </div>
+    ),
   },
   {
-    t: "No licence call-home.",
+    t: "No call-home, ever",
     d: "The platform never contacts an outside server to check seats or licences, so it keeps running if the link, or the vendor, disappears.",
-  },
-  {
-    t: "A proven open-source core.",
-    d: "Built on an established open-source security platform, extended with regulator mapping, reporting and alerting.",
+    specimen: (
+      <div className={`${specimenCls} flex items-center justify-between gap-4`}>
+        <span>Outbound connections</span>
+        <span className="font-heading text-3xl font-extrabold text-[color:var(--held)]">0</span>
+      </div>
+    ),
+    last: true,
   },
 ];
 
@@ -162,24 +155,6 @@ const transfer = [
   ["Deployment and operating runbooks", "Architecture blueprints, upgrade steps and incident procedures."],
   ["Engineer training", "Hands-on handover to your security operations and engineering staff."],
   ["Independence", "The platform keeps running without renewal fees or vendor access."],
-];
-
-const pilot = [
-  {
-    day: "Days 1–2",
-    title: "Scope and architecture review",
-    body: "We agree the 5 to 10 systems in scope, the framework to report against, and the access rules our engineers work under.",
-  },
-  {
-    day: "Days 3–5",
-    title: "Install inside your boundary",
-    body: "Deployment on your hardware or virtual machines. No change to your network configuration and no outbound connection.",
-  },
-  {
-    day: "Day 14",
-    title: "Gap report and go or no-go",
-    body: "A PISF 2026 or SBP Cyber Shield evidence and gap report built from your own logs, judged against criteria agreed on day 1.",
-  },
 ];
 
 const Eyebrow = ({ children }: { children: ReactNode }) => (
@@ -193,15 +168,17 @@ const Section = ({
   eyebrow,
   title,
   tone,
+  bg,
   children,
 }: {
   id: string;
   eyebrow: string;
   title: string;
   tone: Tone;
+  bg?: string;
   children: ReactNode;
 }) => (
-  <section id={id} style={tones[tone]} className={`scroll-mt-24 py-16 lg:py-20 ${toneBg[tone]}`}>
+  <section id={id} style={tones[tone]} className={`scroll-mt-24 py-16 lg:py-20 ${bg ?? toneBg[tone]}`}>
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -287,9 +264,56 @@ const ConsoleCard = () => (
   </figure>
 );
 
+const EventFanout = () => (
+  <figure
+    aria-label="Illustrative example: one detection, repeated failed logins on the VPN gateway (MITRE ATT&CK T1110), is mapped to the duty it evidences under PISF 2026, SBP Cyber Shield, PTA CTDISR 2025 and, next, NCA ECC."
+    className="mt-10 grid items-center lg:grid-cols-[minmax(0,380px)_4rem_minmax(0,1fr)]"
+  >
+    <div
+      style={tones.dark}
+      className="rounded-2xl bg-[#171009] p-7 text-[color:var(--ink)] shadow-[0_30px_60px_-24px_rgba(23,16,9,0.55)] ring-1 ring-[#2B1D16]"
+    >
+      <div className="flex items-center justify-between">
+        <p className={monoLabel}>Detection</p>
+        <span className="rounded-full bg-[color:var(--acc-soft)] px-2.5 py-0.5 font-body text-xs font-semibold text-[color:var(--acci)]">
+          High
+        </span>
+      </div>
+      <p className="mt-4 font-heading text-xl lg:text-[22px] font-bold leading-snug">
+        Repeated failed logins on the VPN gateway
+      </p>
+      <p className="mt-3 font-mono text-[13px] text-[color:var(--acci)]">MITRE ATT&amp;CK T1110 · Brute force</p>
+      <p className={`${monoLabel} mt-4`}>Illustrative</p>
+    </div>
+
+    <div aria-hidden="true" className="flex justify-center lg:block">
+      <span className="block h-10 w-px bg-[#D97A3D] lg:h-px lg:w-full" />
+    </div>
+
+    <ul className="flex flex-col gap-3 lg:border-l-2 lg:border-[#D97A3D] lg:rounded-l-2xl lg:py-2 lg:pl-6">
+      {fanout.map((f) => (
+        <li
+          key={f.name}
+          className={`grid gap-1 sm:grid-cols-[170px_minmax(0,1fr)] sm:items-center sm:gap-5 rounded-xl px-5 py-4 ${
+            f.next
+              ? "border border-dashed border-[color:var(--rule2)] bg-[color:var(--surf2)]/40"
+              : "bg-[color:var(--surf)] shadow-[0_12px_28px_-18px_rgba(43,29,22,0.35)]"
+          }`}
+        >
+          <span className={`font-heading text-base font-bold ${f.next ? "text-[color:var(--ink3)]" : "text-[color:var(--ink)]"}`}>
+            {f.name}
+          </span>
+          <span className="font-body text-[15px] text-[color:var(--ink2)]">{f.duty}</span>
+        </li>
+      ))}
+    </ul>
+  </figure>
+);
+
 const BoundaryDiagram = () => (
   <figure
     id="architecture-diagram"
+    style={tones.dark}
     className="my-10 rounded-2xl bg-gradient-to-b from-[#1E150F] to-[#221811] p-5 lg:p-10"
     aria-label="Diagram: everything runs inside your boundary. Log sources feed the Nigehbaan core, which collects, detects, maps events to regulator controls and produces evidence. It writes to an open store and serves dashboards, an API and MCP gateway, and alert dispatch. No telemetry and no licence check crosses the boundary."
   >
@@ -401,14 +425,13 @@ const NigehbaanSystems = () => {
             </div>
             <Eyebrow>Sovereign security monitoring and compliance</Eyebrow>
             <h1 className="font-heading text-4xl lg:text-[3.4rem] lg:leading-[1.08] font-extrabold text-[color:var(--ink)] mb-6">
-              Your logs. Your detection rules.{" "}
-              <span className="text-[color:var(--acc)]">Your custody.</span>
+              Indigenous Defence.{" "}
+              <span className="text-[color:var(--acc)]">Total Control.</span>
             </h1>
             <p className="font-body text-lg lg:text-xl leading-relaxed text-[color:var(--ink2)] mb-8 max-w-2xl">
-              A security monitoring platform for public bodies, banks, telecom operators and defence
-              networks. It runs inside your boundary, air-gapped or connected, turns the logs you
-              already collect into evidence mapped to PISF 2026, SBP Cyber Shield and PTA CTDISR, and
-              is built to be handed over to your team.
+              A sovereign security monitoring and compliance platform that runs inside your defended
+              boundary, air-gapped or connected. It turns the telemetry you already collect into audit
+              evidence, never calls home, and is built to be handed to your team, source code included.
             </p>
             <div className="flex flex-wrap gap-3 mb-8">
               <Link to="/contact" className={btnPrimary}>
@@ -438,34 +461,7 @@ const NigehbaanSystems = () => {
         </div>
       </div>
 
-      <Section id="questions" tone="light" eyebrow="The test" title="Three questions a division should answer without asking a foreign vendor.">
-        <div className="grid lg:grid-cols-3 gap-6 mt-4">
-          {questions.map((x, i) => (
-            <div key={x.q} className={`${cardCls} p-6 flex flex-col`}>
-              <p className="font-heading text-5xl font-extrabold text-[color:var(--rule2)] leading-none mb-3">
-                {i + 1}
-              </p>
-              <h3 className="font-heading text-xl font-bold text-[color:var(--ink)] mb-5">{x.q}</h3>
-              <dl className="space-y-3 font-body text-sm flex-1">
-                <div>
-                  <dt className="text-xs font-semibold uppercase tracking-wider text-[color:var(--ink3)]">Foreign cloud SIEM</dt>
-                  <dd className="text-[color:var(--ink2)] mt-0.5">{x.cloud}</dd>
-                </div>
-                <div>
-                  <dt className="text-xs font-semibold uppercase tracking-wider text-[color:var(--ink3)]">Self-run open source</dt>
-                  <dd className="text-[color:var(--ink2)] mt-0.5">{x.diy}</dd>
-                </div>
-              </dl>
-              <div className="mt-5 rounded-xl border-l-4 border-[color:var(--acc)] bg-[color:var(--acc-soft)] p-4">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[color:var(--acc)]">Nigehbaan Systems</p>
-                <p className="font-body text-base font-semibold text-[color:var(--ink)] mt-1">{x.us}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section id="capabilities" tone="dark" eyebrow="Capabilities" title="Monitoring you control, evidence your auditor can read.">
+      <Section id="capabilities" tone="dark" bg="bg-[#2B1D16]" eyebrow="Capabilities" title="Monitoring you control, evidence your auditor can read.">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-4">
           {capabilities.map((c) => (
             <div key={c.title} className={`${cardCls} p-6 flex flex-col`}>
@@ -477,47 +473,71 @@ const NigehbaanSystems = () => {
               </p>
             </div>
           ))}
+          <div className="flex flex-col justify-center gap-2 p-6">
+            <p className={monoLabel}>Coming next</p>
+            <p className="font-body text-sm leading-relaxed text-[color:var(--ink2)]">
+              Optional AI triage on your own hardware: each alert labelled real, noise or escalate.
+              The analyst decides.
+            </p>
+          </div>
         </div>
       </Section>
 
-      <Section id="regulation" tone="light" eyebrow="Regulatory evidence" title="Stop rebuilding audit evidence by hand.">
+      <Section id="regulation" tone="light" eyebrow="Regulatory evidence" title="One event. Evidence for every regulator you answer to.">
         <div className="max-w-3xl">
           <p className={bodyText}>
             Regulators now require a SIEM, a year of logs and evidence that monitoring works. We map
-            each event the platform sees to the control it evidences, so the gap report exists
-            before the auditor arrives: which systems evidence a control, and which are silent.
+            each event to the control it evidences, so the gap report exists before the auditor
+            arrives: which systems evidence a control, and which are silent.
           </p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
-          {frameworks.map((f) => (
-            <div key={f.name} className={`${cardCls} p-6`}>
-              <h3 className="font-heading text-lg font-bold text-[color:var(--ink)]">{f.name}</h3>
-              <p className="font-body text-xs font-semibold uppercase tracking-wider text-[color:var(--acc)] mt-1 mb-3">
-                {f.who}
-              </p>
-              <p className="font-body text-sm leading-relaxed text-[color:var(--ink2)]">{f.what}</p>
-            </div>
-          ))}
-        </div>
-        <p className="font-body text-sm text-[color:var(--ink3)] mt-6 max-w-3xl">
+        <EventFanout />
+        <p className="font-body text-sm text-[color:var(--ink3)] mt-10 max-w-3xl">
           Mappings show evidence against controls. They are not a certification: whether you comply
           remains your auditor's judgement.
         </p>
       </Section>
 
       <Section id="architecture" tone="dark" eyebrow="Architecture" title="Open components, wholly inside your perimeter.">
+        <p className={`${bodyText} max-w-3xl`}>
+          Built on an established open-source security platform, extended with regulator mapping,
+          reporting and alerting.
+        </p>
         <BoundaryDiagram />
-        <dl className="grid md:grid-cols-2 gap-x-10 gap-y-5 max-w-5xl">
-          {archPoints.map((p) => (
-            <div key={p.t} className="border-t border-[color:var(--rule)] pt-4">
-              <dt className="font-heading text-base font-bold text-[color:var(--ink)]">{p.t}</dt>
-              <dd className="font-body text-sm leading-relaxed text-[color:var(--ink2)] mt-1">{p.d}</dd>
-            </div>
-          ))}
-        </dl>
       </Section>
 
-      <Section id="ownership" tone="light" eyebrow="Ownership" title="A platform you can inspect, change and own.">
+      <Section id="built-in" tone="light" eyebrow="Built in" title="Built for networks that stay closed.">
+        <ol className="relative mt-8 flex max-w-6xl flex-col gap-8 lg:gap-7">
+          <span
+            aria-hidden="true"
+            className="absolute left-[23px] top-6 bottom-6 w-0.5 bg-gradient-to-b from-[#D97A3D] to-[#D97A3D]/15"
+          />
+          {builtIn.map((x, i) => (
+            <li
+              key={x.t}
+              className="relative grid grid-cols-[48px_minmax(0,1fr)] gap-x-5 gap-y-4 lg:grid-cols-[48px_minmax(0,1fr)_420px] lg:gap-x-8 lg:items-center"
+            >
+              <span
+                className={`flex h-12 w-12 items-center justify-center rounded-full font-mono text-[13px] ring-[6px] ring-[#F5EFE8] ${
+                  x.last
+                    ? "bg-[#D97A3D] text-[#171009] shadow-[0_0_28px_rgba(217,122,61,0.7)]"
+                    : "bg-[#171009] text-[#F0B287] shadow-[0_0_24px_rgba(217,122,61,0.5)]"
+                }`}
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="font-heading text-xl lg:text-[22px] font-bold text-[color:var(--ink)]">{x.t}</h3>
+                <p className="mt-1.5 font-body text-base leading-relaxed text-[color:var(--ink2)] max-w-xl">{x.d}</p>
+              </div>
+              <div className="col-start-2 lg:col-start-3">{x.specimen}</div>
+            </li>
+          ))}
+        </ol>
+        <p className={`${monoLabel} mt-8`}>Examples are illustrative</p>
+      </Section>
+
+      <Section id="ownership" tone="dark" eyebrow="Ownership" title="A platform you can inspect, change and own.">
         <div className="grid lg:grid-cols-[1fr_1.3fr] gap-10 items-start">
           <div className="space-y-4">
             <p className={bodyText}>
@@ -545,37 +565,6 @@ const NigehbaanSystems = () => {
         </div>
       </Section>
 
-      {/* Pilot band */}
-      <section id="pilot" style={tones.dark} className="scroll-mt-24 bg-[#2B1D16] py-16 lg:py-24">
-        <div className="container mx-auto px-6">
-          <Eyebrow>14-day pilot</Eyebrow>
-          <h2 className="font-heading text-3xl lg:text-4xl font-extrabold text-[color:var(--ink)] mb-4 max-w-3xl">
-            See your own evidence in 14 days.
-          </h2>
-          <p className={`${bodyText} max-w-3xl mb-10`}>
-            We do not ask you to replace what you run today. We prove the platform inside your own
-            network, on a handful of systems, before you commit to procurement.
-          </p>
-          <ol className="relative grid lg:grid-cols-3 gap-6 max-w-5xl">
-            <span
-              aria-hidden="true"
-              className="hidden lg:block absolute left-6 right-6 top-[22px] h-px bg-gradient-to-r from-[#E8996A]/70 via-[#E8996A]/40 to-[#E8996A]/70"
-            />
-            {pilot.map((s) => (
-              <li key={s.title} className="relative flex flex-col">
-                <span className="relative z-10 self-start inline-flex items-center rounded-full border border-[color:var(--acc)] bg-[#2B1D16] px-3 py-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[color:var(--acci)]">
-                  {s.day}
-                </span>
-                <div className="mt-4 flex-1 rounded-2xl border border-[color:var(--rule)] bg-[#171009] p-6">
-                  <h3 className="font-heading text-lg font-bold text-[color:var(--ink)] mb-2">{s.title}</h3>
-                  <p className="font-body text-sm leading-relaxed text-[color:var(--ink2)]">{s.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
       {/* Closing CTA band */}
       <section
         id="next"
@@ -587,8 +576,8 @@ const NigehbaanSystems = () => {
             Request a briefing.
           </h2>
           <p className="font-body text-lg leading-relaxed text-[color:var(--ink2)] max-w-xl">
-            Our engineers walk your team through the architecture, deployment inside your boundary
-            and how a 14-day pilot would run. Held under NDA on request.
+            Our engineers walk your team through the architecture and deployment inside your
+            boundary. Held under NDA on request.
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-8">
             <Link to="/contact" className={btnPrimary}>
