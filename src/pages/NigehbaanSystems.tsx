@@ -75,17 +75,11 @@ const capabilities = [
   },
 ];
 
-const frameworks = [
-  { name: "PISF 2026", who: "Ministries, divisions, autonomous bodies and critical information infrastructure" },
-  { name: "SBP Cyber Shield", who: "Banks, microfinance banks and payment operators" },
-  { name: "PTA CTDISR 2025", who: "Telecom licensees" },
-];
-const nextFrameworks = "Gulf next: NCA ECC, SAMA CSF, CBUAE";
-
-const flowLayers = [
-  ["Collect", "Agents, syslog, NetFlow"],
-  ["Detect", "Open rules, MITRE ATT&CK"],
-  ["Map", "Each event to the control it evidences"],
+const fanout = [
+  { name: "PISF 2026", duty: "SIEM operation and audit under the PKCERT SOC structure" },
+  { name: "SBP Cyber Shield", duty: "Monitoring coverage for the maturity assessment" },
+  { name: "PTA CTDISR 2025", duty: "Custom use case; real-time critical alert to the national telecom SOC" },
+  { name: "NCA ECC · next", duty: "2-12-3: continuous monitoring of event logs", next: true },
 ];
 
 const sources = ["Servers and endpoints", "Firewalls and routers", "Switches and legacy appliances", "Applications and directories"];
@@ -138,15 +132,17 @@ const Section = ({
   eyebrow,
   title,
   tone,
+  bg,
   children,
 }: {
   id: string;
   eyebrow: string;
   title: string;
   tone: Tone;
+  bg?: string;
   children: ReactNode;
 }) => (
-  <section id={id} style={tones[tone]} className={`scroll-mt-24 py-16 lg:py-20 ${toneBg[tone]}`}>
+  <section id={id} style={tones[tone]} className={`scroll-mt-24 py-16 lg:py-20 ${bg ?? toneBg[tone]}`}>
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -232,85 +228,49 @@ const ConsoleCard = () => (
   </figure>
 );
 
-const FlowConnector = () => (
-  <div aria-hidden="true" className="flex justify-center lg:block">
-    <span className="block h-10 w-px bg-gradient-to-b from-[#D97A3D]/20 to-[#D97A3D] lg:h-px lg:w-full lg:bg-gradient-to-r" />
-  </div>
-);
-
-const EvidenceFlow = () => (
+const EventFanout = () => (
   <figure
-    aria-label="Diagram: your firewalls, servers, switches and applications feed Nigehbaan inside your boundary, which collects, detects and maps each event to the regulator control it evidences. The result is an evidence and gap report, for example 42 of 44 sources reporting with 2 core switches silent."
-    className="mt-10 grid items-center gap-4 lg:grid-cols-[minmax(0,1fr)_3rem_minmax(0,1.15fr)_3rem_minmax(0,1fr)] xl:grid-cols-[minmax(0,1fr)_5rem_minmax(0,1.15fr)_5rem_minmax(0,1fr)] lg:gap-0"
+    aria-label="Illustrative example: one detection, repeated failed logins on the VPN gateway (MITRE ATT&CK T1110), is mapped to the duty it evidences under PISF 2026, SBP Cyber Shield, PTA CTDISR 2025 and, next, NCA ECC."
+    className="mt-10 grid items-center lg:grid-cols-[minmax(0,380px)_4rem_minmax(0,1fr)]"
   >
-    <div className="flex flex-col gap-3">
-      <p className={monoLabel}>Your sources</p>
-      {sources.map((s) => (
-        <div
-          key={s}
-          className="rounded-xl border border-[color:var(--rule2)] bg-[color:var(--surf)] px-4 py-3 font-body text-sm text-[color:var(--ink)]"
-        >
-          {s}
-        </div>
-      ))}
-    </div>
-
-    <FlowConnector />
-
-    <div className="flex flex-col items-center">
-      {flowLayers.map(([t, d], i) => {
-        const top = i === flowLayers.length - 1;
-        return (
-          <div
-            key={t}
-            style={{ transform: "perspective(600px) rotateX(18deg)" }}
-            className={`w-full max-w-sm rounded-2xl border px-5 py-4 ${i > 0 ? "-mt-1.5" : ""} ${
-              top
-                ? "border-[#F0B48C] bg-gradient-to-br from-[#D97A3D] to-[#A4531F] shadow-[0_24px_60px_-10px_rgba(217,122,61,0.7)]"
-                : "border-[#E89A66]/50 bg-gradient-to-br from-[#D97A3D]/25 to-[#D97A3D]/5 shadow-[0_18px_40px_-12px_rgba(217,122,61,0.4)]"
-            }`}
-          >
-            <p className={`font-heading text-lg font-bold ${top ? "text-[#171009]" : "text-[color:var(--ink)]"}`}>{t}</p>
-            <p className={`font-body text-sm ${top ? "text-[#2B1D16]" : "text-[color:var(--ink2)]"}`}>{d}</p>
-          </div>
-        );
-      })}
-      <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.14em] text-[color:var(--acci)]">
-        Inside your boundary
-      </p>
-    </div>
-
-    <FlowConnector />
-
-    <div className="flex flex-col gap-3">
-      <p className={monoLabel}>Evidence and gap report</p>
-      <div className="rounded-2xl bg-[#F5EFE8] p-5 text-[#171009] shadow-[0_24px_48px_-16px_rgba(0,0,0,0.6)]">
-        <div className="flex items-baseline justify-between gap-3">
-          <p className="font-heading text-[15px] font-bold">Centralised logging</p>
-          <p className="font-body text-xs text-[#6B5B4C]">PISF 2026</p>
-        </div>
-        <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#E8DCCB]" aria-hidden="true">
-          <div className="h-2 w-[95%] bg-[#D97A3D]" />
-        </div>
-        <p className="mt-3 font-body text-sm">42 of 44 sources reporting</p>
-        <p className="mt-1 font-body text-sm font-semibold text-[#9B2C1F]">Gap: 2 core switches silent since 3 Oct</p>
-        <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-[#6B5B4C]">Illustrative</p>
+    <div
+      style={tones.dark}
+      className="rounded-2xl bg-[#171009] p-7 text-[color:var(--ink)] shadow-[0_30px_60px_-24px_rgba(23,16,9,0.55)] ring-1 ring-[#2B1D16]"
+    >
+      <div className="flex items-center justify-between">
+        <p className={monoLabel}>Detection</p>
+        <span className="rounded-full bg-[color:var(--acc-soft)] px-2.5 py-0.5 font-body text-xs font-semibold text-[color:var(--acci)]">
+          High
+        </span>
       </div>
-      <ul className="flex flex-wrap gap-2">
-        {frameworks.map((f) => (
-          <li
-            key={f.name}
-            title={f.who}
-            className="rounded-full border border-[color:var(--rule2)] px-3 py-1 font-body text-xs text-[color:var(--ink)]"
-          >
-            {f.name}
-          </li>
-        ))}
-        <li className="rounded-full border border-dashed border-[color:var(--rule2)] px-3 py-1 font-body text-xs text-[color:var(--ink3)]">
-          {nextFrameworks}
-        </li>
-      </ul>
+      <p className="mt-4 font-heading text-xl lg:text-[22px] font-bold leading-snug">
+        Repeated failed logins on the VPN gateway
+      </p>
+      <p className="mt-3 font-mono text-[13px] text-[color:var(--acci)]">MITRE ATT&amp;CK T1110 · Brute force</p>
+      <p className={`${monoLabel} mt-4`}>Illustrative</p>
     </div>
+
+    <div aria-hidden="true" className="flex justify-center lg:block">
+      <span className="block h-10 w-px bg-[#D97A3D] lg:h-px lg:w-full" />
+    </div>
+
+    <ul className="flex flex-col gap-3 lg:border-l-2 lg:border-[#D97A3D] lg:rounded-l-2xl lg:py-2 lg:pl-6">
+      {fanout.map((f) => (
+        <li
+          key={f.name}
+          className={`grid gap-1 sm:grid-cols-[170px_minmax(0,1fr)] sm:items-center sm:gap-5 rounded-xl px-5 py-4 ${
+            f.next
+              ? "border border-dashed border-[color:var(--rule2)] bg-[color:var(--surf2)]/40"
+              : "bg-[color:var(--surf)] shadow-[0_12px_28px_-18px_rgba(43,29,22,0.35)]"
+          }`}
+        >
+          <span className={`font-heading text-base font-bold ${f.next ? "text-[color:var(--ink3)]" : "text-[color:var(--ink)]"}`}>
+            {f.name}
+          </span>
+          <span className="font-body text-[15px] text-[color:var(--ink2)]">{f.duty}</span>
+        </li>
+      ))}
+    </ul>
   </figure>
 );
 
@@ -465,7 +425,7 @@ const NigehbaanSystems = () => {
         </div>
       </div>
 
-      <Section id="capabilities" tone="light" eyebrow="Capabilities" title="Monitoring you control, evidence your auditor can read.">
+      <Section id="capabilities" tone="dark" bg="bg-[#2B1D16]" eyebrow="Capabilities" title="Monitoring you control, evidence your auditor can read.">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-4">
           {capabilities.map((c) => (
             <div key={c.title} className={`${cardCls} p-6 flex flex-col`}>
@@ -487,7 +447,7 @@ const NigehbaanSystems = () => {
         </div>
       </Section>
 
-      <Section id="regulation" tone="dark" eyebrow="Regulatory evidence" title="From the logs you have to the evidence they ask for.">
+      <Section id="regulation" tone="light" eyebrow="Regulatory evidence" title="One event. Evidence for every regulator you answer to.">
         <div className="max-w-3xl">
           <p className={bodyText}>
             Regulators now require a SIEM, a year of logs and evidence that monitoring works. We map
@@ -495,14 +455,14 @@ const NigehbaanSystems = () => {
             arrives: which systems evidence a control, and which are silent.
           </p>
         </div>
-        <EvidenceFlow />
+        <EventFanout />
         <p className="font-body text-sm text-[color:var(--ink3)] mt-10 max-w-3xl">
           Mappings show evidence against controls. They are not a certification: whether you comply
           remains your auditor's judgement.
         </p>
       </Section>
 
-      <Section id="architecture" tone="light" eyebrow="Architecture" title="Open components, wholly inside your perimeter.">
+      <Section id="architecture" tone="dark" eyebrow="Architecture" title="Open components, wholly inside your perimeter.">
         <BoundaryDiagram />
         <dl className="grid md:grid-cols-2 gap-x-10 gap-y-5 max-w-5xl">
           {archPoints.map((p) => (
@@ -514,7 +474,7 @@ const NigehbaanSystems = () => {
         </dl>
       </Section>
 
-      <Section id="ownership" tone="dark" eyebrow="Ownership" title="A platform you can inspect, change and own.">
+      <Section id="ownership" tone="light" eyebrow="Ownership" title="A platform you can inspect, change and own.">
         <div className="grid lg:grid-cols-[1fr_1.3fr] gap-10 items-start">
           <div className="space-y-4">
             <p className={bodyText}>
