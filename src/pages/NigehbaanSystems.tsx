@@ -108,10 +108,6 @@ const archPoints = [
     t: "No licence call-home.",
     d: "The platform never contacts an outside server to check seats or licences, so it keeps running if the link, or the vendor, disappears.",
   },
-  {
-    t: "A proven open-source core.",
-    d: "Built on an established open-source security platform, extended with regulator mapping, reporting and alerting.",
-  },
 ];
 
 const transfer = [
@@ -463,8 +459,13 @@ const NigehbaanSystems = () => {
       </Section>
 
       <Section id="architecture" tone="dark" eyebrow="Architecture" title="Open components, wholly inside your perimeter.">
+        <p className={`${bodyText} max-w-3xl`}>
+          Built on an established open-source security platform, extended with regulator mapping,
+          reporting and alerting.
+        </p>
         <BoundaryDiagram />
-        <dl className="grid md:grid-cols-2 gap-x-10 gap-y-5 max-w-5xl">
+        <h3 className="font-heading text-xl font-bold text-[color:var(--ink)] mb-4">How it is built</h3>
+        <dl className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-5">
           {archPoints.map((p) => (
             <div key={p.t} className="border-t border-[color:var(--rule)] pt-4">
               <dt className="font-heading text-base font-bold text-[color:var(--ink)]">{p.t}</dt>
