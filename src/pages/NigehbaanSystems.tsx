@@ -79,7 +79,7 @@ const capabilities = [
   {
     icon: KeyRound,
     title: "Built to be owned",
-    body: "Technology transfer of source, build pipeline, runbooks and engineer training, so your team can run and extend the platform without us.",
+    body: "Technology transfer of source, build pipeline, runbooks and engineer training is available on request, subject to licence review, so your team can run and extend the platform without us.",
     tag: "No lock-in",
   },
   {
@@ -153,7 +153,7 @@ const archPoints = [
   },
   {
     t: "A proven open-source core.",
-    d: "Built on the Wazuh open-source security platform, extended with regulator mapping, reporting and alerting.",
+    d: "Built on an established open-source security platform, extended with regulator mapping, reporting and alerting.",
   },
 ];
 
@@ -522,12 +522,13 @@ const NigehbaanSystems = () => {
           <div className="space-y-4">
             <p className={bodyText}>
               Most SIEM vendors sell a subscription you can never leave. For federal divisions,
-              defence establishments and strategic enterprises, we offer technology transfer: your
-              engineers receive everything needed to run and extend the platform themselves.
+              defence establishments and strategic enterprises, technology transfer is available on
+              request, subject to licence review: your engineers receive everything needed to run and
+              extend the platform themselves.
             </p>
             <p className="font-body text-sm text-[color:var(--ink3)]">
-              Transfer terms, including the open-source licences of the core, are confirmed with
-              each customer in writing.
+              Transfer scope and terms follow a review of the open-source licences of the core and
+              are agreed with each customer in writing.
             </p>
           </div>
           <ol className="grid sm:grid-cols-2 gap-4">
@@ -602,8 +603,7 @@ const NigehbaanSystems = () => {
           <p className="font-body text-xs leading-relaxed text-[color:var(--ink3)] max-w-4xl">
             Console views on this page are illustrative. Detection capabilities come from the
             open-source core and are configured per deployment. Regulator mappings are alignments,
-            not certifications. Wazuh is a trademark of Wazuh, Inc.; Nigehbaan Systems is not
-            affiliated with or endorsed by Wazuh, Inc.
+            not certifications.
           </p>
         </div>
       </div>
