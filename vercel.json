@@ -1,4 +1,7 @@
 {
+  "redirects": [
+    { "source": "/products/nigehbaan", "destination": "https://nigehbaansystems.com/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
