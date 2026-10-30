@@ -30,3 +30,5 @@ logo-after.png
 
 # Claude Code worktrees
 .claude/worktrees/
+.vercel
+.env*
