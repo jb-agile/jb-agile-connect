@@ -34,9 +34,9 @@ const MissionSection = () => {
                 Vision
               </p>
               <p className="font-body text-lg leading-relaxed" style={{ color: "#A1A1AA" }}>
-                To be the partner organizations call when their systems don't talk to each other —
-                bringing a reusable orchestration approach, refined across 15+ years of
-                engagements, to every new domain we enter.
+                To be the partner organizations call when their systems don't talk to each other,
+                bringing a reusable orchestration approach, refined across many engagements, to
+                every new domain we enter.
               </p>
             </div>
           </div>
