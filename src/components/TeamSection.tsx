@@ -2,8 +2,6 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { MapPin } from "lucide-react";
 
-const disciplines = ["Product Design", "Full-Stack Engineering", "Integration Engineering", "QA"];
-
 const TeamSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
@@ -21,12 +19,14 @@ const TeamSection = () => {
             The Team
           </p>
           <h2 className="font-heading text-4xl lg:text-5xl font-extrabold text-text-dark mb-6">
-            A compact, senior team — not a bench of juniors
+            AI-native engineering, led by enterprise veterans
           </h2>
           <p className="font-body text-lg max-w-[700px] mx-auto leading-relaxed" style={{ color: "#52525B" }}>
-            7–11 specialists across two offices, running every engagement in two-week sprints
-            with live demos at every milestone. No black-box development — stakeholders see
-            working software from week two onwards.
+            Everyone on an engagement has delivered enterprise systems before, in telecoms, banking
+            and government. AI runs through our engineering practice, from requirements and design
+            to code review and testing, which lets a small team carry the scope of a much larger
+            one. You work directly with the people building your system, and you see working
+            software every two weeks.
           </p>
         </motion.div>
 
@@ -57,9 +57,9 @@ const TeamSection = () => {
             className="bg-card border border-border-light rounded-2xl p-8 lg:p-10 shadow-sm"
           >
             <p className="font-body text-xs font-semibold uppercase tracking-widest text-accent mb-5">
-              Structure
+              Offices
             </p>
-            <div className="flex flex-wrap gap-3 mb-8">
+            <div className="flex flex-wrap gap-3">
               {["Lahore — primary engineering hub", "Islamabad — client engagement & delivery"].map(
                 (office) => (
                   <div
@@ -71,13 +71,6 @@ const TeamSection = () => {
                   </div>
                 )
               )}
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              {disciplines.map((d) => (
-                <div key={d} className="rounded-xl bg-secondary px-4 py-3">
-                  <span className="font-body text-sm font-medium text-text-dark">{d}</span>
-                </div>
-              ))}
             </div>
           </motion.div>
         </div>
