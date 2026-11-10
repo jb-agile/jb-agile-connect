@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { Activity, Landmark, Radio, Shield, Building2, HeartPulse, Zap } from "lucide-react";
 
 const stats = [
-  { value: "25", label: "Years enterprise delivery" },
   { value: "7", label: "Countries" },
   { value: "4", label: "Continents" },
 ];
@@ -74,14 +73,13 @@ const TrackRecordSection = () => {
             Track Record
           </p>
           <h2 className="font-heading text-4xl lg:text-5xl font-extrabold text-text-light mb-6">
-            Fifteen years of showing up, delivering, and getting asked back
+            Clients trust us with the systems their own customers depend on
           </h2>
           <p className="font-body text-lg max-w-[720px] mx-auto leading-relaxed" style={{ color: "#A1A1AA" }}>
-            JB Agile's principal, Jawad Bokhari, spent over 15 years building and scaling a
-            customer-engagement platform — from solo engineer to an 80+ engineer organization now
-            live across telecom, banking, government, and crisis-line clients in 7+ countries.
-            That track record of reliable delivery is why clients keep coming back, in whatever
-            order the next project comes.
+            Banks, telcos and government agencies in seven countries run on systems our people
+            designed and delivered. We tell clients honestly what will work, and we stay with them
+            long after go-live. That is why so many of them bring us their next project before
+            looking anywhere else.
           </p>
         </motion.div>
 
@@ -89,7 +87,7 @@ const TrackRecordSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-3 gap-4 mb-16 max-w-[600px] mx-auto"
+          className="grid grid-cols-2 gap-4 mb-16 max-w-[400px] mx-auto"
         >
           {stats.map((s) => (
             <div key={s.label} className="text-center rounded-2xl border border-white/10 bg-white/5 py-6 px-3">
