@@ -49,9 +49,9 @@ const sectors = [
 const activeEngagements = [
   {
     label: "Currently Building",
-    name: "Pakistan Land Port Authority (PLPA)",
-    tag: "Government · Trade & Customs — Pakistan",
-    body: "Building a cross-agency cargo monitoring and reconciliation platform that integrates data feeds from multiple trade and logistics agencies into a single real-time oversight dashboard — with automated exception detection, SLA breach alerts, and audit-grade reporting for supervisors.",
+    name: "Federal Government Agency",
+    tag: "Government · Pakistan",
+    body: "Building a cross-agency monitoring and reconciliation platform that brings data feeds from several government agencies into one real-time oversight dashboard, with automated exception detection, SLA breach alerts and audit-grade reporting for supervisors.",
     status: "Active engagement, Phase 1 in progress — the start of a long-term, multi-project partnership.",
   },
 ];
